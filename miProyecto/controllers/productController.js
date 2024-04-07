@@ -1,0 +1,1 @@
+// hacer un for para que se muestren todas las zapatillas
