@@ -9,7 +9,7 @@ let db = {
     },
     productos: [
         {
-            imagen:'falta imagen',
+            imagen:'/images/products/',
             nombre: 'ZAPATILLAS GAZELLE', //https://www.adidas.com.ar/zapatillas-gazelle/IF3817.html
             descripcion: 'ZAPATILLAS ADIDAS CON UN LOOK RETRO Y UNA ENERGÍA MODERNA. Lucí un estilo casual con estas zapatillas adidas Gazelle. Lanzadas en 1966 como unas zapatillas de entrenamiento, las Gazelle han resistido la prueba del tiempo. Ahora se convirtieron en un ícono audaz que te lleva del trabajo al fin de semana sin perder el ritmo. El exterior de gamuza y la suela de caucho se combinan para ofrecer un look vintage con comodidad moderna. Las Gazelle, alguna vez usadas por atletas ahora aclamadas por todos, siguen atrayendo miradas décadas después de su debut.',
             comentarios: [
