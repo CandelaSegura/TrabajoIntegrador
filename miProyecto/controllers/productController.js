@@ -3,11 +3,11 @@ const db = require('../db/index');
 const productController = {
 
     detalleProducto: function (req, res) {
-        let idEnviado = req.params.id;
+        let id = req.params.id;
         let detalleProducto = [];
         let comentariosProducto = [];
         for (let i = 0; i < db.productos.length; i++) {
-            if (idEnviado == db.productos[i].id) {
+            if (id == db.productos[i].id) {
                 detalleProducto.push(db.productos[i]);
                 comentariosProducto = db.productos[i].comentarios; 
             }
@@ -23,9 +23,7 @@ const productController = {
         })
     },
 
-
     add: function(req,res) {
-        
         return res.render("product-add", {
             productos: db.productos
         })
