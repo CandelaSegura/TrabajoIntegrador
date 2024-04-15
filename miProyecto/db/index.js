@@ -192,4 +192,4 @@ let db = {
 }
 
 
-module.export = db;
+module.exports = db;

@@ -6,35 +6,32 @@ const productController = {
         let idEnviado = req.params.id;
         let detalleProducto = [];
         let comentariosProducto = [];
-        for (let i = 0; i < data.productos.length; i++) {
-            if (idEnviado == data.productos[i].id) {
-                detalleProducto.push(data.productos[i]);
-                comentariosProducto = data.productos[i].comentarios; 
-                break;
+        for (let i = 0; i < db.productos.length; i++) {
+            if (idEnviado == db.productos[i].id) {
+                detalleProducto.push(db.productos[i]);
+                comentariosProducto = db.productos[i].comentarios; 
             }
         }
         return res.render('product', {
             index: detalleProducto,
             comentarios: comentariosProducto 
         })
+     },
+
+    resultadosDeBusqueda: function(req, res){
+        return res.render("search-results", {'data': db
+        })
     },
 
-    index: function(req, res){
-        return res.render("product", {'data': data
-        })
-    },
-    resultadosDeBusqueda: function(req, res){
-        return res.render("search-results", {'data': data
-        })
-    },
+
     add: function(req,res) {
         
         return res.render("product-add", {
-            productos: data.productos
+            productos: db.productos
         })
     }
 }
 
-module.exports = productController
+module.exports = productController;
 
 

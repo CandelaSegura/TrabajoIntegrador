@@ -1,12 +1,18 @@
-// var express = require('express');
-// var router = express.Router();
-// const productController = require('../controllers/productController');
-
-// router.get('/id/:id', productController.detalleProducto)
-
-// module.exports = router;
-
 var express = require('express');
 var router = express.Router();
+const productController = require('../controllers/productController');
 
-module.exports = router; 
+
+//product.ejs
+router.get ('/id/:id', productController.detalleProducto);
+
+//productadd.ejs
+router.get ('/add', productController.add);
+
+//search.ejs
+router.get ('/search', productController.resultadosDeBusqueda);
+
+
+
+module.exports = router;
+
