@@ -15,12 +15,32 @@
 				<h2 class="products-title">Registrate</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> <i>///////////////////////////////////////// <br> Acá va el formulario de registro. <br>
-			Debe cumplir con los puntos de la consigna y ser coherente con la tabla de la base de datos <br>
-			Eliminen estás líneas y coloquen el formulario. <br>
-			Recuerden todo lo que necesita tanto la etiqueta form como los campos input para operar correctamtente</i> <br>
-			////////////////
-			</h2>
+			<form class="formulario" action="/register" method="post">
+				<label class="vacioForm" for="email">Email:</label>
+				<input class="completarForm" type="email" id="email" name="email"><br>
+
+				<label class="vacioForm" for="usuario">Usuario:</label>
+				<input class="completarForm" type="text" id="usuario" name="usuario"><br>
+			  
+				<label class="vacioForm" for="contraseña">Contraseña:</label>
+				<input class="completarForm" type="password" id="contraseña" name="contraseña"><br>
+			  
+				<label class="vacioForm" for="fecha_nacimiento">Fecha de Nacimiento:</label>
+				<input class="completarForm" type="date" id="fecha_nacimiento" name="fecha_nacimiento"><br>
+			  
+				<label class="vacioForm" for="nro_documento">Nro de Documento:</label>
+				<input class="completarForm" type="number" id="nro_documento" name="nro_documento"><br>
+			  
+				<label class="vacioForm" for="foto_perfil">Foto de Perfil:</label>
+				<input class="completarForm" type="text" id="foto_perfil" name="foto_perfil"><br>
+
+				<% if (error) { %>
+					<br>
+					<p class="vacioForm"><%= error %></p>
+				<% } %>
+			  
+				<input class="completarForm" type="submit" value="Enviar">
+			  </form>
 
 
 	<!-- footer -->
