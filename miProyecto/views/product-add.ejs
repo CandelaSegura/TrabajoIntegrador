@@ -15,10 +15,21 @@
 				<h2 class="products-title">Agregar productos</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-
-
-
-
+			<form class="formsConsigna" action="/products/agregarProducto" method="post">
+				<label class="vacioForm" for="imagen">Imagen:</label>
+				<input class="completarForm" type="text" id="imagen" name="imagen"><br>
+			  
+				<label class="vacioForm" for="producto">Nombre del producto:</label>
+				<input class="completarForm" type="text" id="producto" name="producto"><br>
+			  
+				<label class="vacioForm" for="descripcion">Descripcion:</label>
+				<input class="completarForm" type="text" id="descripcion" name="descripcion"><br>
+			  
+				<label class="vacioForm" for="fechaCarga">Fecha de carga:</label>
+				<input class="completarForm" type="date" id="fechaCarga" name="fechaCarga"><br>
+			  
+				<input class="completarForm" type="submit" value="Enviar">
+			  </form> <!--no puedo hacer que se linkee en la pagina principal-->
 	<!-- footer -->
 	<%- include('./partials/footer') %>
 	<!-- /footer -->

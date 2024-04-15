@@ -1,3 +1,3 @@
-// const db = require('../db/index');
+const db = require('../db/index');
 
-// module.exports = userController
+module.exports = userController
