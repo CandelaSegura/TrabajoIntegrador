@@ -77,20 +77,19 @@ VALUES (DEFAULT, "5", "/images/public/515v3.jpg", "ZAPATILLAS 515 v3", "El estil
 -- 5 USUARIOS -- 
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario1', 'usuario1@usuario.com', 'contraseña1', '1990-01-01', 123456789, 'perfil1.jpg', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'usuario1', 'usuario1@usuario.com', 'contraseña1', '1990-01-01', 123456789, '/images/public/users/perfil1.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario2', 'usuario2@usuario.com', 'contraseña2', '1995-05-05', 987654321, 'perfil2.jpg', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'usuario2', 'usuario2@usuario.com', 'contraseña2', '1995-05-05', 987654321, '/images/public/users/perfil2.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario3', 'usuario3@usuario.com', 'contraseña3', '1988-12-10', 567890123, 'perfil3.jpg', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'usuario3', 'usuario3@usuario.com', 'contraseña3', '1988-12-10', 567890123, '/images/public/users/perfil3.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario4', 'usuario4@usuario.com', 'contraseña4', '2000-08-20', 654321789, 'perfil4.jpg', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'usuario4', 'usuario4@usuario.com', 'contraseña4', '2000-08-20', 654321789, '/images/public/users/perfil4.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario5', 'usuario5@usuario.com', 'contraseña5', '1993-03-15', 456789012, 'perfil5.jpg', DEFAULT, DEFAULT, DEFAULT);
-
+VALUES (DEFAULT, 'usuario5', 'usuario5@usuario.com', 'contraseña5', '1993-03-15', 456789012, '/images/public/users/perfil5.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 
 -- 3 COMENTARIOS X PUBLICACION
