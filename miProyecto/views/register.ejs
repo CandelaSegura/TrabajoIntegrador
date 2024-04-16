@@ -15,7 +15,7 @@
 				<h2 class="products-title">Registrate</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form class="formulario" action="/register" method="post">
+			<form class="formulario" action="/user/login" method="post">
 				<label class="vacioForm" for="email">Email:</label>
 				<input class="completarForm" type="email" id="email" name="email"><br>
 
@@ -34,12 +34,8 @@
 				<label class="vacioForm" for="foto_perfil">Foto de Perfil:</label>
 				<input class="completarForm" type="text" id="foto_perfil" name="foto_perfil"><br>
 
-				<% if (error) { %>
-					<br>
-					<p class="vacioForm"><%= error %></p>
-				<% } %>
-			  
-				<input class="completarForm" type="submit" value="Enviar">
+				<button class="boton" type="submit">Registrar</button>
+				
 			  </form> <!--no puedo hacer que se linkee en la pagina principal-->
 
 

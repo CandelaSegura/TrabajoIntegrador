@@ -15,7 +15,7 @@
 				<h2 class="products-title">Ingresar</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form class="formulario" action="/login" method="post">
+			<form class="formulario" action="/users/profile" method="post">
 				<label class="vacioForm" for="email">Email:</label>
 				<input class="completarForm" type="text" id="email" name="email"><br>
 
@@ -24,12 +24,9 @@
 
 				<label class="vacioForm" for="recordarme">Recordarme:</label>
 				<input class="completarForm" type="checkbox" id="recordarme" name="recordarme"><br>
-				<% if (error) { %>
-					<br>
-					<p class="vacioForm"><%= error %></p>
-				<% } %>
-				<input class="completarForm" type="submit" value="Enviar">
-
+				
+				<button class="boton" type="submit">Iniciar Sesión</button>
+				
 			</form> <!--no puedo hacer que se linkee en la pagina principal-->
 
 	<!-- footer -->
