@@ -19,8 +19,26 @@ const productController = {
      },
 
     resultadosDeBusqueda: function(req, res){
-        return res.render("search-results", {'data': db
-        })
+        let buscado = req.query.search
+        let resultado = []
+
+        for (let i = 0; i < db.productos.length; i++) {
+            if (buscado.toLowerCase() == db.productos[i].nombre.toLowerCase()) {
+                resultado.push(db.productos[i])
+            } 
+        }
+
+        if (resultado.length >= 1) {
+            return res.render("search-results", {
+                mensaje: `Resultados de busqueda: ${buscar}`,
+                resultado:resultado
+            })
+        } else {
+            return res.render("search-results", {
+                mensaje: `No se ha encontrado: ${buscar}`,
+                resultado:resultado
+            })
+        }
     },
 
     add: function(req,res) {
