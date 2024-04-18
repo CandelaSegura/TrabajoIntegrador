@@ -81,7 +81,7 @@ let db = {
             ]
         },
         {
-            imagen:'/images/public/Palermo.jpg',
+            imagen:'/images/products/Palermo.jpg',
             nombre: 'Zapatillas Palermo Lth unisex', //https://ar.puma.com/zapatillas-palermo-lth-unisex-396464-03.html?color=13364
             descripcion: 'Exterior de piel con superposiciones de ante y formstrip, Ojetera, lengüeta y etiqueta PUMA de material sintético',
             comentarios: [
@@ -99,7 +99,7 @@ let db = {
             ]
         },
         {
-            imagen:'/images/public/Suede.jpg',
+            imagen:'/images/products/Suede.jpg',
             nombre: 'Zapatillas Suede Classic XXI ADP', //https://ar.puma.com/zapatillas-suede-classic-xxi-adp-388981-90.html?color=12084
             descripcion: 'Diseño clásico de caña baja, Empeine de ante completo con forro sintético, Plantilla cómoda, Entresuela de goma, Suela exterior de goma y Cierre con cordones',
             comentarios: [
@@ -117,7 +117,7 @@ let db = {
             ]
         },
         {
-            imagen:'/images/public/ChuckTaylor.jpg',
+            imagen:'/images/products/ChuckTaylor.jpg',
             nombre: 'Chuck Taylor All Star', //https://converse.com.ar/product/756991C
             descripcion: 'Un icono para el dia a dia. Es difícil negar que los niños se ven realmente lindos con las zapatillas Chuck Taylor All Star',
             comentarios: [
@@ -135,7 +135,7 @@ let db = {
             ]
         },
         {
-            imagen:'/images/public/Chuck70.jpg',
+            imagen:'/images/products/Chuck70.jpg',
             nombre: 'Chuck 70', //https://converse.com.ar/product/A05114C
             descripcion: 'Las Chuck 70 combinan los mejores detalles de las Chuck de los 70 con una confección artesanal impecable y materiales premium',
             comentarios: [
@@ -153,7 +153,7 @@ let db = {
             ]
         },
         {
-            imagen:'/images/public/500.jpg',
+            imagen:'/images/products/500.jpeg',
             nombre: '500', //https://www.newbalance.com.ar/mujer-zapatillas-N10190280.html
             descripcion: 'La zapatilla para mujer 500 te proporciona el confort que buscas en tu día a día sin renunciar al estilo',
             comentarios: [
@@ -171,7 +171,7 @@ let db = {
             ]
         },
         {
-            imagen:'/images/public/515v3.jpg',
+            imagen:'/images/products/515v3.jpg',
             nombre: '515 v3', //https://www.newbalance.com.ar/mujer-zapatillas-N10190272060799.html
             descripcion: 'El estilo informal se suma a la comodidad de nuestras zapatillas para mujer 515v3',
             comentarios: [

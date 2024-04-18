@@ -30,12 +30,12 @@ const productController = {
 
         if (resultado.length >= 1) {
             return res.render("search-results", {
-                mensaje: `Resultados de busqueda: ${buscar}`,
+                mensaje: `Resultados de busqueda: ${buscado}`,
                 resultado:resultado
             })
         } else {
             return res.render("search-results", {
-                mensaje: `No se ha encontrado: ${buscar}`,
+                mensaje: `No se ha encontrado: ${buscado}`,
                 resultado:resultado
             })
         }
