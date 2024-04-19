@@ -14,14 +14,14 @@ let db = {
             descripcion: 'Zapatillas adidas con un look retro y una energia moderno',
             comentarios: [
                 {
-                    usuario: 'hola',
-                    texto: 'hola',
-                    fotoDePerfil: 'hola'
+                    usuario: '1',
+                    texto: 'Muy comodas, lindas y de muy buena calidad. Recomiendo!',
+                    fotoDePerfil: '/images/public/users/perfil1.jpg'
                 },
                 {
-                    usuario: 'hola',
-                    texto: 'hola',
-                    fotoDePerfil: 'hola'
+                    usuario: '2',
+                    texto: 'El diseño de estas zapatillas es genial, ¡me encanta el estilo!',
+                    fotoDePerfil: '/images/public/users/perfil2.jpg'
 
                 }
             ]
