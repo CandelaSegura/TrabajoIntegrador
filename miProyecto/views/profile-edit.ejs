@@ -15,26 +15,40 @@
 				<h2 class="products-title">Editar mi perfil</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<label class="vacioForm" for="email">Modificar Email:</label>
+			<form class="formulario" action="/user/profile" method="post">
+				
+				<div class="pregunta">
+				<label class="vacioForm" for="email">Modificar Email:</label>
 				<input class="completarForm" type="email" id="email" name="email"><br>
+				</div>
 
+				<div class="pregunta">
 				<label class="vacioForm" for="usuario">Modificar Usuario:</label>
 				<input class="completarForm" type="text" id="usuario" name="usuario"><br>
-			  
+				</div>
+
+				<div class="pregunta">
 				<label class="vacioForm" for="contraseña">Modificar Contraseña:</label>
 				<input class="completarForm" type="password" id="contraseña" name="contraseña"><br>
-			  
+				</div>
+
+				<div class="pregunta">
 				<label class="vacioForm" for="fecha_nacimiento">Modificar Fecha de Nacimiento:</label>
 				<input class="completarForm" type="date" id="fecha_nacimiento" name="fecha_nacimiento"><br>
-			  
+				</div>
+
+				<div class="pregunta">
 				<label class="vacioForm" for="nro_documento">Modificar Nro de Documento:</label>
 				<input class="completarForm" type="number" id="nro_documento" name="nro_documento"><br>
-			  
+				</div>
+
+				<div class="pregunta">
 				<label class="vacioForm" for="foto_perfil">Modificar Foto de Perfil:</label>
 				<input class="completarForm" type="text" id="foto_perfil" name="foto_perfil"><br>
+				</div>
 
 				<button class="boton" type="submit"><a href='/user/profile'>Guardar cambios</a></button>
-
+			</form>
 		</div>
 	</div>
 

@@ -1,5 +1,6 @@
 /*====== Fonts ======*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@400;700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Work+Sans&display=swap');
 
 
 /*====== Variables ======*/
@@ -141,7 +142,7 @@ hr {
 }
 
 .logout:hover{
-  color:#B69280;
+  color: #1259c3;
 }
 
 .left-navbar a,
@@ -170,6 +171,7 @@ hr {
 }
 
 .products-title {
+  font-family: "Titillium Web", sans-serif;
   font-size: 2.4em;
   font-weight: 400;
   color: var(--gray);
@@ -270,7 +272,7 @@ hr {
 }
 
 .footer-data i {
-  color: var(--light-blue);
+  color: #B69280;
   font-size: 3.5em;
 }
 
@@ -452,6 +454,29 @@ textarea.form-input {
   min-height: 140px;
   resize: vertical;
   padding: 15px;
+}
+
+.vacioForm {
+  color: var(--gray);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.completarForm {
+  color: var(--gray);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.pregunta {
+font-family: "Titillium Web", sans-serif;
+display: flex;
+flex-direction: column;
+}
+
+.boton{
+  font-family: "Titillium Web", sans-serif;
+  font-size: 18px;
 }
 
 /*====== Profile ======*/

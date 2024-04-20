@@ -13,7 +13,7 @@ const productController = {
             }
         }
         return res.render('product', {
-            index: detalleProducto,
+            detalleProducto: detalleProducto,
             comentarios: comentariosProducto 
         })
      },
