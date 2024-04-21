@@ -119,7 +119,7 @@ INSERT INTO tabla_comentarios
 VALUES (DEFAULT, '3', '3', '¡Me encanta la atención al detalle en el acabado de estas zapatillas, se nota el cuidado en la fabricación!', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '3', '3', 'Con su estampado único, estas zapatillas de estilo artístico son una declaración de moda en sí mismas', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '5', '3', 'Con su estampado único, estas zapatillas de estilo artístico son una declaración de moda en sí mismas', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
 VALUES (DEFAULT, '1', '4', 'El diseño único y colorido de estas zapatillas de estilo étnico las convierte en el centro de atención donde quiera que vaya.', DEFAULT, DEFAULT, DEFAULT);
@@ -131,19 +131,19 @@ INSERT INTO tabla_comentarios
 VALUES (DEFAULT, '2', '4', 'Estas zapatillas son tan cómodas que me las pongo para todo, desde recados rápidos hasta salidas informales.', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '1', '5', 'Estas zapatillas son mi opción número uno para el día a día; son lindas, cómodas y siempre a la moda.', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '5', '5', 'Estas zapatillas son mi opción número uno para el día a día; son lindas, cómodas y siempre a la moda.', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '1', '5', 'Estas zapatillas son la combinación perfecta de estilo y funcionalidad para mis ocupados días cotidianos.', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '2', '5', 'Estas zapatillas son la combinación perfecta de estilo y funcionalidad para mis ocupados días cotidianos.', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
 VALUES (DEFAULT, '1', '5', 'Me encanta cómo estas zapatillas son cómodas y a la vez estilosas. Son ideales para largos paseos urbanos', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '1', '6', 'Con estas zapatillas, cada paso es un placer. Son livianas y amortiguan perfectamente.', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '3', '6', 'Con estas zapatillas, cada paso es un placer. Son livianas y amortiguan perfectamente.', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '1', '6', 'Estas zapatillas son más que un calzado, son una declaración de estilo. Definitivamente elevan cualquier conjunto casual', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '5', '6', 'Estas zapatillas son más que un calzado, son una declaración de estilo. Definitivamente elevan cualquier conjunto casual', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
 VALUES (DEFAULT, '1', '6', 'Siempre recibo cumplidos cuando uso estas zapatillas. Son el complemento perfecto para cualquier look.', DEFAULT, DEFAULT, DEFAULT);
@@ -152,19 +152,19 @@ INSERT INTO tabla_comentarios
 VALUES (DEFAULT, '1', '7', 'Estas zapatillas son como un básico en mi armario. Siempre puedo confiar en ellas para cualquier ocasión casual.', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '1', '7', 'Estas zapatillas tienen ese toque de estilo urbano que hace que cualquier conjunto luzca genial sin esfuerzo!', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '4', '7', 'Estas zapatillas tienen ese toque de estilo urbano que hace que cualquier conjunto luzca genial sin esfuerzo!', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '1', '7', 'La atención al detalle en el diseño de estas zapatillas urbanas es impresionante', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '2', '7', 'La atención al detalle en el diseño de estas zapatillas urbanas es impresionante', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '1', '8', 'Estas zapatillas urbanas son esenciales en cualquier guardarropa. Combinan estilo y comodidad a la perfección', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '4', '8', 'Estas zapatillas urbanas son esenciales en cualquier guardarropa. Combinan estilo y comodidad a la perfección', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
 VALUES (DEFAULT, '1', '8', 'Recomiendo estas zapatillas urbanas por su durabilidad y diseño atemporal. Son perfectas para cualquier ocasión casual!', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '1', '8', 'No puedo recomendar lo suficiente estas zapatillas urbanas. Son ligeras, cómodas y se adaptan a cualquier entorno urbano con estilo.', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '3', '8', 'No puedo recomendar lo suficiente estas zapatillas urbanas. Son ligeras, cómodas y se adaptan a cualquier entorno urbano con estilo.', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
 VALUES (DEFAULT, '1', '9', 'Estas zapatillas urbanas son una excelente inversión. Su diseño minimalista las hace perfectas para cualquier conjunto', DEFAULT, DEFAULT, DEFAULT);
