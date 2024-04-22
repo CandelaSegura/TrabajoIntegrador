@@ -1,7 +1,7 @@
 /*====== Fonts ======*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@400;700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Work+Sans&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald:wght@200..700&family=Raleway:wght@400;700&family=Work+Sans:ital,wght@0,700;1,400&display=swap');
 
 /*====== Variables ======*/
 :root {
@@ -12,7 +12,7 @@
   --light-gray: #ebebeb;
   --green: #39b54a;
   --pink: #B69280;
-  --base-font-family: 'Roboto', sans-serif
+  --base-font-family: "Oswald", sans-serif
 }
 
 
