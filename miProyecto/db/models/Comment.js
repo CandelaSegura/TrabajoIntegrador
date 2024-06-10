@@ -36,12 +36,13 @@ module.exports = function (sequelize, dataTypes){
     };
 
     let config = {
-        tableName: " ",
+        tableName: "tabla_comentarios",
         timestamps: false,
         underscored: true
     };
 
     const Comment = sequelize.define(alias, cols, config);
     //aca van las relaciones
+    
     return Comment;
 }
