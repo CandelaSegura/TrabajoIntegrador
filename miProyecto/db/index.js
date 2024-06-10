@@ -1,3 +1,6 @@
+// Esto hay que borrarlos una vez terminado los modelos 
+
+
 let db = {
     usuario: {
         email: 'juangomez@example.com',

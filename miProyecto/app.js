@@ -21,11 +21,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//Aca "usamos" session
 app.use(session(
   { secret:'baseDatos',
     resave: false,
     saveUninitialized: true }
 ));
+
+app.use(function(req,res,nest){
+  console.log('en session middleware')
+  if(req.session.user != undefined){
+    res.local.user = req.session.user
+    res.local.user = res.locals.user
+    console.log ('Entre en locals');
+    console.log (res.locals);
+    return next()
+  }
+  return next()
+})
 
 app.use('/', indexRouter);
 app.use('/product', productRouter);
