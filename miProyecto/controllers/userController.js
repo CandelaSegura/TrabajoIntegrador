@@ -1,4 +1,6 @@
-const db = require('../db/index');
+const db = require('../db/index'); //hay que sacarlo?
+const { validationResult } = require('express-validator');
+
 
 const userController = {
     

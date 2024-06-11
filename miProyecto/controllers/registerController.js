@@ -8,6 +8,7 @@ let registerController = {
         return res.render('register');
     },
     store: function(req,res){
+        //falta la parte del controller del punto 2, verlo en la clase de express validator
         let user = {
             name: req.body.name,
             email: req.body.email,
