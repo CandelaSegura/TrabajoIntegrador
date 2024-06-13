@@ -1,4 +1,7 @@
 const { body } = require('express-validator');
+const db = require('../db/models');
+const bycryptjs = require('bcryptjs');
+const user = db.User;
 
 const register = [
     body("email")
@@ -6,8 +9,18 @@ const register = [
     .withMessage("El email es un campo obligatorio")
     .bail()
     .isEmail()
-    .withMessage("debes escribir un formato de correo valido"),
-    //Falta: No podrán registrarse emails duplicados
+    .withMessage("debes escribir un formato de correo valido")
+    .custom(function(value, {req}){
+        return db.User.findOne({
+            where: email = value
+        })
+        .then(function (user) {
+            console.log("user: ", JSON.stringify(user,null,4));
+            if (user)
+                throw new Error ("Ingresar un mail que no haya sido utilizado")
+        })
+    }),
+    //value: de donde viene, trae lo que escribio el usuario
     
     body("usuario")
     .notEmpty()
@@ -15,10 +28,25 @@ const register = [
 
     body("contraseña")
     .notEmpty()
-    .withMessage("Contrasena: campo obligatorio"),
-    //Consigna: debe tener al menos 4 caracteres. 
+    .withMessage("Contraseña: campo obligatorio")
+    .isLength({min: 4})
+    .withMessage("La contraseña debe contener como mínimo 4 caracteres")
+    .custom((value, {req}){
+        return db.User.findOne({
+            where: {email:req.body.email}
+        })
+        .then(funtion(user){
+            if(user){
+                const password = req.password;
+                const passwordOk = bycryptjs.compareSync(value,password)
+                if(!passwordOk){
+                    throw new Error('contraseña incorrecta')
+                }
+            }
+        })
+    }),
     //Debe almacenarse en la base de datos de forma encriptada. 
-    //Si el usuario envía el campo vacío o con menos de 4 caracteres debe recibir un mensaje especificando el error.
+    //corregir
 
     body("fecha_nacimiento"),
 
