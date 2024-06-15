@@ -1,4 +1,5 @@
-const db = require('../db/index');
+const db = require('../db/index'); // Borrar este despues
+// const db = require('../database/models'); DESCOMENTAR
 
 const productController = {
 
