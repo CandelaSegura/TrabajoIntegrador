@@ -1,4 +1,5 @@
 const { body } = require("express-validator");
+const db = require('../db/models');
 
 const registerValidator = [
     body("email")
