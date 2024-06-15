@@ -1,4 +1,5 @@
-const db = require('../db/index'); //cambiar con los modelos
+const db = require('../db/models'); 
+const { validationResult } = require('express-validator');
 const op = db.Sequelize.Op; 
 const users = db.User; 
 
@@ -8,19 +9,24 @@ let registerController = {
         return res.render('register');
     },
     store: function(req,res){
-        //falta la parte del controller del punto 2, verlo en la clase de express validator
-        let user = {
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
+        const resultValidation = validationResult(req)
+
+        if(!resultValidation.isEmpty()){
+            return res.render("login", {
+                errors:resultValidation.mapped(),
+                oldData: req.body
+            })
+        } else {
+            users.findOne({
+                where: [{email: req.body.email}]
+            })
+            .then(function(user){
+                return res.direct("/login")
+            })
+            .catch(function(error){
+                console.log(error)
+            })
         }
-        users.create(user)
-        .then(function(user){
-            return res.direct("/login")
-        })
-        .catch(function(error){
-            console.log(error)
-        })
 
     }
 }

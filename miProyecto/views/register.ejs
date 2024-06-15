@@ -15,10 +15,13 @@
 				<h2 class="products-title">Registrate</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form class="formulario" action="/user/login" method="post">
+			<form class="formulario" action="/user/login" method="POST" novalidate>
 			<div class="pregunta">
 				<label class="vacioForm" for="email">Email:</label>
-				<input class="completarForm" type="email" id="email" name="email"><br>
+				<input type="email" class="completarForm" id="email" name="email" placeholder="email" value="<%= locals.oldData && oldData.email ? oldData.email : null %>">
+				<% if (locals.errors && errors.email) { %>
+                            <div class = "error-msg" > <%= errors.email.msg %> </div>
+                        <% } %>
 			</div>
 
 			<div class="pregunta">
