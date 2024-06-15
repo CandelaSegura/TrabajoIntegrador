@@ -1,3 +1,4 @@
+
 module.exports = function (sequelize, dataTypes){
     
     let alias = 'Product' //Este alias se busca como nombre en de la tabla en plural dentro de la base de datos.
