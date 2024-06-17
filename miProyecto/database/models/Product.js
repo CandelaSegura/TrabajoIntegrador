@@ -17,7 +17,7 @@ module.exports = function (sequelize, dataTypes){
         imagen_producto: {
             type: dataTypes.STRING(255)
         },
-        nombre_produdcto:{
+        nombre_producto:{
             type: dataTypes.STRING(200)
         },
         descripcion_producto: {
@@ -31,7 +31,7 @@ module.exports = function (sequelize, dataTypes){
             type: dataTypes.DATE,
             allowNull: true,
         },
-        deletedAt: {
+        deleted_at: {
             type: dataTypes.DATE,
             allowNull: true
         }
@@ -53,8 +53,8 @@ module.exports = function (sequelize, dataTypes){
         Product.belongsTo(models.User, {
             as:"tabla_usuario",
             foreignKey: "id_usuario"
-        })
-    }
+        });
+    };
 
     return Product;
    

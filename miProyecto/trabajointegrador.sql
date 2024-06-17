@@ -3,25 +3,26 @@ USE trabajointegrador;
 
 CREATE TABLE tabla_usuario (
 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+usuario VARCHAR(500) NOT NULL, 
 email VARCHAR(500) NOT NULL,
 contrasena VARCHAR(100) NOT NULL,
 fecha DATE NOT NULL,
 dni INT NOT NULL,
 foto_perfil VARCHAR(255),
-createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-deletedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE tabla_productos (
 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 id_usuario INT UNSIGNED,
 imagen_producto VARCHAR(255) NOT NULL,
-nombre_produdcto VARCHAR(200) NOT NULL,
+nombre_producto VARCHAR(200) NOT NULL,
 descripcion_producto VARCHAR(1000) NOT NULL,
-createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-deletedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
 
 FOREIGN KEY (id_usuario) REFERENCES tabla_usuario(id)
 );
@@ -32,64 +33,64 @@ id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 id_usuario INT UNSIGNED NOT NULL,
 id_producto INT UNSIGNED NOT NULL,
 texto_comentario VARCHAR(1000) NOT NULL,
-createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-deletedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
 
 FOREIGN KEY (id_producto) REFERENCES tabla_productos(id),
 FOREIGN KEY (id_usuario) REFERENCES tabla_usuario(id)
 );
 
 
--- 10 PUBLICACIONES -- HACERLO BIEN 
+-- 10 PUBLICACIONES -- 
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "1", "/images/products/Gazelle.jpg", "ZAPATILLAS GAZELLE", "Zapatillas adidas con un look retro y una energia moderno", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '1', "/images/products/1.jpg", "ZAPATILLAS GAZELLE", "Zapatillas adidas con un look retro y una energia moderno", DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "2", "/images/products/Samba.jpg", "ZAPATILLAS SAMBA OG", "Zapatillas atemporales en colores llamativos y materiales de alta costura", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '2', "/images/products/2.jpg", "ZAPATILLAS SAMBA OG", "Zapatillas atemporales en colores llamativos y materiales de alta costura", DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "3", "/images/products/AirJordan.jpg", "AIR JORDAN 1 LOW", "El Air Jordan 1 Low te ofrece una parte de la historia y herencia Jordan con una comodidad que dura todo el día", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '3', "/images/products/3.jpg", "AIR JORDAN 1 LOW", "El Air Jordan 1 Low te ofrece una parte de la historia y herencia Jordan con una comodidad que dura todo el día", DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "4", "/images/products/AirJordanRetro.jpg", "ZAPATILLAS AIR JORDAN 1 RETRO HIGH OG", "Esta iteración del AJ1 reinventa el primer modelo exclusivo de Mike con una nueva combinación de colores", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '4', "/images/products/4.jpg", "ZAPATILLAS AIR JORDAN 1 RETRO HIGH OG", "Esta iteración del AJ1 reinventa el primer modelo exclusivo de Mike con una nueva combinación de colores", DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "5", "/images/public/Palermo.jpg", "ZAPATILLAS PALERMO LTH UNISEX", "Exterior de piel con superposiciones de ante y formstrip, Ojetera, lengüeta y etiqueta PUMA de material sintético", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '5', "/images/products/5.jpg", "ZAPATILLAS PALERMO LTH UNISEX", "Exterior de piel con superposiciones de ante y formstrip, Ojetera, lengüeta y etiqueta PUMA de material sintético", DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "1", "/images/public/Suede.jpg", "ZAPATILLAS SUEDE CLASSIC XXI ADP", "Diseño clásico de caña baja, Empeine de ante completo con forro sintético, Plantilla cómoda, Entresuela de goma, Suela exterior de goma y Cierre con cordones", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '1', "/images/products/6.jpg", "ZAPATILLAS SUEDE CLASSIC XXI ADP", "Diseño clásico de caña baja, Empeine de ante completo con forro sintético, Plantilla cómoda, Entresuela de goma, Suela exterior de goma y Cierre con cordones", DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "2", "/images/public/ChuckTaylor.jpg", "ZAPATILLAS CHUCK TAYLOR", "Un icono para el dia a dia. Es difícil negar que los niños se ven realmente lindos con las zapatillas Chuck Taylor All Star", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '2', "/images/products/7.jpg", "ZAPATILLAS CHUCK TAYLOR", "Un icono para el dia a dia. Es difícil negar que los niños se ven realmente lindos con las zapatillas Chuck Taylor All Star", DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "3", "/images/public/Chuck70.jpg", "ZAPATILLAS CHUCk 70", "Las Chuck 70 combinan los mejores detalles de las Chuck de los 70 con una confección artesanal impecable y materiales premium", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '3', "/images/products/8.jpg", "ZAPATILLAS CHUCk 70", "Las Chuck 70 combinan los mejores detalles de las Chuck de los 70 con una confección artesanal impecable y materiales premium", DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "4", "/images/public/500.jpg", "ZAPATILLAS 500", "La zapatilla para mujer 500 te proporciona el confort que buscas en tu día a día sin renunciar al estilo", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '4', "/images/products/9.jpg", "ZAPATILLAS 500", "La zapatilla para mujer 500 te proporciona el confort que buscas en tu día a día sin renunciar al estilo", DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_productos
-VALUES (DEFAULT, "5", "/images/public/515v3.jpg", "ZAPATILLAS 515 v3", "El estilo informal se suma a la comodidad de nuestras zapatillas para mujer 515v3", DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '5', "/images/products/10.jpg", "ZAPATILLAS 515 v3", "El estilo informal se suma a la comodidad de nuestras zapatillas para mujer 515v3", DEFAULT, DEFAULT, DEFAULT);
 
 
 -- 5 USUARIOS -- 
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario1', 'usuario1@usuario.com', 'contraseña1', '1990-01-01', 123456789, '/images/public/users/perfil1.jpg', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'usuario 1', 'usuario1@usuario.com', 'contraseña1', '1990-01-01', 123456789, '/images/public/users/perfil1.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario2', 'usuario2@usuario.com', 'contraseña2', '1995-05-05', 987654321, '/images/public/users/perfil2.jpg', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'usuario 2', 'usuario2@usuario.com', 'contraseña2', '1995-05-05', 987654321, '/images/public/users/perfil2.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario3', 'usuario3@usuario.com', 'contraseña3', '1988-12-10', 567890123, '/images/public/users/perfil3.jpg', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'usuario 3', 'usuario3@usuario.com', 'contraseña3', '1988-12-10', 567890123, '/images/public/users/perfil3.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario4', 'usuario4@usuario.com', 'contraseña4', '2000-08-20', 654321789, '/images/public/users/perfil4.jpg', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'usuario 4', 'usuario4@usuario.com', 'contraseña4', '2000-08-20', 654321789, '/images/public/users/perfil4.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario5', 'usuario5@usuario.com', 'contraseña5', '1993-03-15', 456789012, '/images/public/users/perfil5.jpg', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'usuario 5', 'usuario5@usuario.com', 'contraseña5', '1993-03-15', 456789012, '/images/public/users/perfil5.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 
 -- 3 COMENTARIOS X PUBLICACION
@@ -182,4 +183,4 @@ INSERT INTO tabla_comentarios
 VALUES (DEFAULT, '5', '10', 'La verdad es que me siento supercomodo con ellas. Gran acabado y buena adaptación desde el primer momento', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO tabla_comentarios
-VALUES (DEFAULT, '8', '10', 'Buen diseño, buena comodidad y buena calidad. La plantilla es lo que menos me gusta', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, '1', '10', 'Buen diseño, buena comodidad y buena calidad. La plantilla es lo que menos me gusta', DEFAULT, DEFAULT, DEFAULT);

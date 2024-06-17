@@ -1,18 +1,19 @@
 // const db = require('../db/index');
-const db = require('../database/models')
-const productos = db.Product
+const db = require('../database/models');
+const product = db.Product;
 
 // Mostrar los productos de forma descente segun su fecha de creacion
 const indexController = {
     index: function(req, res){
-        productos.findAll({
+        product.findAll({
             order: [
-                ['createdAt','DESC']
+                ['created_at','DESC']
             ],
             limit: 15
         })
         .then(function(productos){
-            res.render("index", {'productos': productos}) //preguntar si productos productos 
+            //console.log("productos:",productos)
+            res.render("index", {productos: productos}); 
         })
         .catch(function(error){
             console.log(error);

@@ -199,6 +199,7 @@ hr {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+
 }
 
 .product-box_data h2 {
@@ -251,7 +252,7 @@ hr {
 }
 
 .product-box:hover p {
-  height: 36px;
+  height: 100px;
   margin-top: 15px;
 }
 

@@ -1,13 +1,31 @@
 const { body } = require("express-validator");
-const db = require('../db/models');
+const db = require('../database/models');
 
-const registerValidator = [
+const registerValidation = [
     body("email")
-    .notEmpty()
-    .withMessege("Completar este campo con un email")
-    .bail()
-    .isEmail()
-    .withMessege()
+        .notEmpty()
+        .withMessage("Completar este campo con un email")
+        .isEmail()
+        .withMessage("Tiene que tener formato email")
+        .custom(function(value, {req}){
+            return db.User.findeOne({
+                where: {email:value},
+            })
+            .then (function(user){
+                if (user){
+                    throw new Error ("Este email ya se encunetra registrado")
+                }
+            })
+        }),
+    body ("usuario")
+        .notEmpty()
+        .withMessage("Completar este campo con un nombre"),
+    body ("contrasena")
+        .notEmpty()
+        .withMessage("Completar este campo con una contraseña")
+        .isLength({min:4})
+        .withMessage("Debe tener al menos 4 caracteres"),
 ];
 
-module.exports = registerValidator;
+module.exports = registerValidation;
+

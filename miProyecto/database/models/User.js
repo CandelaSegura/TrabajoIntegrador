@@ -9,6 +9,9 @@ module.exports = function (sequelize, dataTypes) {
             unsigned: true,
             type: dataTypes.INTEGER
         },
+        usuario:{
+            type: dataTypes.STRING(500)
+        },
         email: {
             type: dataTypes.STRING(500)
         },
@@ -24,7 +27,7 @@ module.exports = function (sequelize, dataTypes) {
         foto_perfil: {
             type: dataTypes.STRING(255)
         },
-        created_at : {
+        created_at: {
             type: dataTypes.DATE,
             allowNull:true,
         },
@@ -32,7 +35,7 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.DATE,
             allowNull: true,
         },
-        deletedAt: {
+        deleted_at: {
             type: dataTypes.DATE,
             allowNull: true
         }
