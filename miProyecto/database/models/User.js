@@ -15,17 +15,20 @@ module.exports = function (sequelize, dataTypes) {
         email: {
             type: dataTypes.STRING(500)
         },
-        constrasena: {
+        contrasena: {
             type: dataTypes.STRING(100)
         },
         fecha: {
-            type: dataTypes.DATE
+            type: dataTypes.DATE,
+            allowNull:true,
         },
         dni:{
-            type: dataTypes.INTEGER
+            type: dataTypes.INTEGER,
+            allowNull:true,
         },
         foto_perfil: {
-            type: dataTypes.STRING(255)
+            type: dataTypes.STRING(255),
+            allowNull:true,
         },
         created_at: {
             type: dataTypes.DATE,

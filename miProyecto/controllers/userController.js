@@ -2,6 +2,8 @@
 const db = require('../database/models');
 const { validationResult } = require('express-validator');
 const op = db.Sequelize.Op;
+const bcrypt = require('bcryptjs');
+const dayjs = require('dayjs');
 
 
 const userController = {
@@ -15,23 +17,34 @@ const userController = {
     },
 
     store: function(req,res) {
-        const user = {
+        const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+           console.log("errors:", JSON.stringify(errors,null,4));
+           return res.render("register", { 
+               errors: errors.mapped(),
+               oldData: req.body
+            }) 
+        } else {        
+         console.log('Solicitud recibida para registrar usuario');
+           const user = {
             id: req.body.id,
             usuario: req.body.usuario,
             email: req.body.email,
-            contrasena:req.body.contrasena,
-            fecha: req.body.fecha,
-            dni: req.body.dni,
-            foto_perfil: req.body.foto_perfil
+            contrasena: bcrypt.hashSync(req.body.contrasena, 10), 
+            fecha: req.body.fecha || null , 
+            dni: req.body.dni || null , //Unica manera de solucionar que quede invaliddate
+            foto_perfil: req.body.foto_perfil || null 
         }
-        db.User
-        .create(user)
+        db.User.create(user)
         .then(function(user){
-            res.redirect("/users/login")
+            console.log('Usuario creado correctamente:', user);
+            return res.redirect("/user/login")
         })
         .catch(function(error){
             console.log(error)
         })
+        }
     },
 
     profile: function(req,res) {
