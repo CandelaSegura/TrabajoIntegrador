@@ -15,9 +15,17 @@ const registerValidation = [
                 }
             });
     }),
+
     body ("usuario")
         .notEmpty()
-        .withMessage("Completar este campo con un nombre"),
+        .withMessage("Completar este campo con un nombre")
+        .custom(function(value, { req }) {      //Campo Adicional 
+            if (req.body.usuario[0] != req.body.usuario[0].toUpperCase()) {
+                throw new Error("El nombre de usuario debe empezar con mayúscula");
+            }
+            return true;
+        }), 
+
     body ("contrasena")
         .notEmpty()
         .withMessage("Completar este campo con una contraseña")
