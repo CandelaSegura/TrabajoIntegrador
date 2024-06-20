@@ -1,63 +1,106 @@
-// const db = require('../db/index'); 
 const db = require('../database/models');
 const { validationResult } = require('express-validator');
-const op = db.Sequelize.Op;
 const bcrypt = require('bcryptjs');
-const dayjs = require('dayjs');
-
+const User = db.User;
 
 const userController = {
-    
-    login: function(req,res) {
-        return res.render ('login', {'datos':db});
+    login: function(req, res) {
+        if (req.session.user) {
+            return res.redirect('/profile');
+        }
+        return res.render("login", { oldData: {}, errors: {} });
     },
 
-    register: function(req,res) {
-        return res.render ('register', {'datos':db});
+    enterlogin: function (req, res) {
+
+    let resultValidation = validationResult(req)
+    if (!resultValidation.isEmpty()) {
+      console.log("resultValidation", resultValidation);
+      return res.render('login', { errors: resultValidation.mapped(), oldData: req.body })
+    } else {
+      //Busco el usuario que se quiere loguear
+      users.findOne({
+        where: [{
+          email: req.body.email,
+        }]
+      })
+        .then(function (usuario) {
+          console.log('PASSWORD : ', usuario.contrasenia);
+          let validPassword = bcrypt.compareSync(req.body.contrasena, usuario.contrasenia)
+          console.log('validPassword? :', validPassword);
+          req.session.user = usuario
+          // si tildo recordarme --> creamos la cookie
+          if (req.body.recordarme != undefined) {
+            // console.log("acaaaaa",usuario);
+
+            res.cookie("userId", usuario.id, { maxAge: 1000 * 60 * 5 })
+          }
+          return res.redirect('/')
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    }
+
+  },
+
+    register: function(req, res) {
+        return res.render('register', { datos: db });
     },
 
-    store: function(req,res) {
-        const errors = validationResult(req)
-        
-        if(!errors.isEmpty()){
-           console.log("errors:", JSON.stringify(errors,null,4));
-           return res.render("register", { 
-               errors: errors.mapped(),
-               oldData: req.body
-            }) 
-        } else {        
-         console.log('Solicitud recibida para registrar usuario');
-           const user = {
+    store: function(req, res) {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            console.log("Errores de validación:", JSON.stringify(errors.array(), null, 4));
+            return res.render("register", {
+                errors: errors.mapped(),
+                oldData: req.body
+            });
+        }
+
+        console.log('Solicitud recibida para registrar usuario');
+        const hashedPassword = bcrypt.hashSync(req.body.contrasena, 10);
+        const newUser = {
             id: req.body.id,
             usuario: req.body.usuario,
             email: req.body.email,
-            contrasena: bcrypt.hashSync(req.body.contrasena, 10), 
-            fecha: req.body.fecha || null , 
-            dni: req.body.dni || null , //Unica manera de solucionar que quede invaliddate
-            foto_perfil: req.body.foto_perfil || null 
-        }
-        db.User.create(user)
-        .then(function(user){
+            contrasena: hashedPassword,
+            fecha: req.body.fecha || null,
+            dni: req.body.dni || null,
+            foto_perfil: req.body.foto_perfil || null
+        };
+
+        User.create(newUser)
+        .then(function(user) {
             console.log('Usuario creado correctamente:', user);
-            return res.redirect("/user/login")
+            return res.redirect("/users/login");
         })
-        .catch(function(error){
-            console.log(error)
-        })
-        }
+        .catch(function(error) {
+            console.log("Error al crear usuario:", error);
+            return res.render("register", {
+                errors: { general: { msg: "Error al intentar registrar usuario" } },
+                oldData: req.body
+            });
+        });
     },
 
-    profile: function(req,res) {
-        return res.render ('profile',{'datos':db});
+    profile: function(req, res) {
+        // Aquí deberías cargar los datos del usuario desde req.session.user
+        // Suponiendo que los datos del usuario están en req.session.user
+        const userData = req.session.user || {}; // Ajusta según tus necesidades
+
+        return res.render('profile', { datos: { usuario: userData } });
     },
 
-    profileEdit: function(req,res) {
-        return res.render ('profile-edit', {'datos':db});
+    profileEdit: function(req, res) {
+        return res.render('profile-edit', { datos: db });
     }
-}
-
+};
 
 module.exports = userController;
+
 
 // CHEQUEAR ESTO:
 // La página será accesible únicamente para los usuarios que no estén logueados. Queda a decisión del equipo a donde redirigirlo si quiere acceder.

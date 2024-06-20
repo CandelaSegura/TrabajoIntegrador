@@ -15,26 +15,31 @@
 				<h2 class="products-title">Ingresar</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form class="formulario" action="/users/profile" method="post">
-				
-				<div class="pregunta">
-				<label class="vacioForm" for="email">Email:</label>
-				<input class="completarForm" type="text" id="email" name="email"><br>
-				</div>
+			<form class="formulario" action="/users/login" method="post">
+                <div class="pregunta">
+                    <label class="vacioForm" for="email">Email:</label>
+                    <input class="completarForm" type="text" id="email" name="email" value="<%= oldData.email || '' %>"><br>
+                    <% if (errors.email) { %>
+                        <div class="error-msj text-danger"><%= errors.email.msg %></div>
+                    <% } %>
+                </div>
 
-				<div class="pregunta">
-				<label class="vacioForm" for="contraseña">Contraseña:</label>
-				<input class="completarForm" type="password" id="contraseña" name="contraseña"><br>
-				</div>
+                <div class="pregunta">
+                    <label class="vacioForm" for="contraseña">Contraseña:</label>
+                    <input class="completarForm" type="password" id="contraseña" name="password"><br>
+                    <% if (errors.password) { %>
+                        <div class="error-msj text-danger"><%= errors.password.msg %></div>
+                    <% } %>
+                </div>
 
-				<div class="pregunta">
-				<label class="vacioForm" for="recordarme">Recordarme:</label>
-				<input class="completarForm" type="checkbox" id="recordarme" name="recordarme"><br>
-				</div>
+                <div class="pregunta">
+                    <label class="vacioForm" for="recordarme">Recordarme:</label>
+                    <input class="completarForm" type="checkbox" id="recordarme" name="recordarme"><br>
+                </div>
 
-				<br><button class="boton" type="submit"> <a href='/user/profile'>Iniciar Sesión</a></button></br>
-				
-			</form> <!--no puedo hacer que se linkee en la pagina principal-->
+                <br>
+                <button class="boton" type="submit">Iniciar Sesión</button>
+            </form> <!--no puedo hacer que se linkee en la pagina principal-->
 
 		</div>
 	</div>
