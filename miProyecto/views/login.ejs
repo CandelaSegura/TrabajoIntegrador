@@ -15,21 +15,22 @@
 				<h2 class="products-title">Ingresar</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form class="formulario" action="/users/login" method="post">
+			<form class="formulario" action="/user/login" method="post">
+
                 <div class="pregunta">
                     <label class="vacioForm" for="email">Email:</label>
-                    <input class="completarForm" type="text" id="email" name="email" value="<%= oldData.email || '' %>"><br>
-                    <% if (errors.email) { %>
-                        <div class="error-msj text-danger"><%= errors.email.msg %></div>
-                    <% } %>
+                    <input class="completarForm" type="text" id="email" name="email" value="<%= locals.oldData && oldData.email ? oldData.email : null %>"><br>
+                    <% if (locals.errors && errors.email) { %>
+                        <div class="error-msg"><%= errors.email.msg %></div>
+                        <% } %>
                 </div>
 
                 <div class="pregunta">
                     <label class="vacioForm" for="contraseña">Contraseña:</label>
-                    <input class="completarForm" type="password" id="contraseña" name="password"><br>
-                    <% if (errors.password) { %>
-                        <div class="error-msj text-danger"><%= errors.password.msg %></div>
-                    <% } %>
+                    <input class="completarForm" type="password" id="contraseña" name="password" value="<%= locals.oldData && oldData.contrasena ? oldData.contrasena : null  %>"><br>
+                    <% if (locals.errors && errors.contrasena) { %>
+						<div><%= errors.contrasena.msg %></div>
+					<% } %>
                 </div>
 
                 <div class="pregunta">

@@ -28,13 +28,38 @@ app.use(session(
     saveUninitialized: true }
 ));
 
+
+// Antes de las rutas. Dejar disponible datos de sessión para todas las vistas
 app.use(function(req, res, next){ 
+  console.log("session middleware");
   if(req.session.user != undefined){
     res.locals.user = req.session.user;    
     return next();
   } 
   return next(); //Clave para que el proceso siga adelante.  
 })
+
+app.use(function(req,res,next){
+  //esto solo si tengo una cookie
+  if(req.cookies.userId != undefined && req.session.user == undefined){
+    let idDeLaCookie = req.cookies.userId;
+
+    db.User.findByPk(idDeLaCookie)
+    .then( function(user){
+      console.log("middleware de la cookie trasladando info")
+      req.session.user = user //creamos la session 
+      console.log("en la cookie middleware")
+      res.locals.user = user; //para las vistas
+      return next()
+    })   
+    .catch(function(err){
+      console.log("error en cookies", error)
+    })
+  } else {
+    return next()
+  }
+ })
+ 
 
 app.use('/', indexRouter);
 app.use('/product', productRouter);

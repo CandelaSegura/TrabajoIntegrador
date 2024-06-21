@@ -7,6 +7,8 @@ const loginValidation = require('../middleware/login-validator');
 // Rutas para login
 router.get('/login', userController.login);
 router.post('/login', loginValidation, userController.enterlogin);
+router.post('/logout', userController.logout);
+
 
 // Rutas para registro
 router.get('/register', userController.register);
@@ -19,6 +21,4 @@ router.get('/profile/edit', userController.profileEdit);
 module.exports = router;
 
 
-// 2 PROBLEMAS --> SI NO PONGO NADA EN LA FECHA NO SE GUARDA
-// UNA VEZ QUE SE GUARDA SALTA ERROR --> NO PUEDE REDIRIGIR 
 
