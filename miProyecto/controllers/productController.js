@@ -52,6 +52,32 @@ const productController = {
     },
     
     updateProduct: function(req, res) {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            console.log("errors:", JSON.stringify(errors, null, 4));
+            return res.render("product-edit", { 
+                errors: errors.mapped(),
+                oldData: req.body
+            });
+        } else {
+    
+            db.Product.update({
+                imagen_producto: req.body.imagen,
+                nombre_producto: req.body.producto,
+                descripcion_producto: req.body.descripcion,
+            },
+                { where: { id: req.params.id }
+            })
+
+            .then(function(product) {
+                return res.redirect('/product/id/${req.params.id}');
+            })
+
+            .catch(function(error) {
+                console.log("Error al editar el producto", error);
+            });
+        }
     },
 }
 
