@@ -8,7 +8,7 @@ const productEditValidation = require('../middleware/productEdit - validator')
 router.get ('/id/:id', productController.detalleProducto);
 
 //productadd.ejs
-router.get ('/add', productController.add);
+router.post ('/add', productController.add);
 
 //search.ejs
 router.get ('/search', productController.resultadosDeBusqueda);

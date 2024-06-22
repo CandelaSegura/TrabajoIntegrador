@@ -42,9 +42,21 @@ const productController = {
     },
 
     add: function(req,res) {
-        return res.render("product-add", {
-            productos: db.productos
-        })
+        const data = req.body;
+        console.log(data);
+        const productAdd = {
+            imagen: data.imagen,
+            producto: data.producto,
+            descripcion: data.descripcion,
+            fechaCarga: data.fechaCarga
+        }
+        db.Product.create( product )
+            .then ( function (data){
+                res.redirect('/')
+            })
+            .catch( function(error){
+                console.log(error)
+            })
     },
 
     update: function(req,res){
