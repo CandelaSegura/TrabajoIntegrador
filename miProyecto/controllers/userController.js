@@ -101,7 +101,7 @@ logout: function (req, res) {
 profile: function(req, res) {
     db.User.findByPk(req.params.id, {
       include: [{association: "tabla_productos"}],
-      order: [[{model: product, as: 'tabla_productos'},'createdAt', 'DESC']]
+      order: [[{model: product, as: 'tabla_productos'},'created_at', 'DESC']]
   })
 
   .then(function(user) {
@@ -121,7 +121,3 @@ profile: function(req, res) {
 
 module.exports = userController;
 
-
-// CHEQUEAR ESTO:
-// La página será accesible únicamente para los usuarios que no estén logueados. Queda a decisión del equipo a donde redirigirlo si quiere acceder.
-// Al crear nuevos usuarios en la base de datos debe plasmarse la fecha de creación en el campo created_at (o createdAt si usan camel case).

@@ -45,7 +45,14 @@ const productController = {
         return res.render("product-add", {
             productos: db.productos
         })
-    }
+    },
+
+    update: function(req,res){
+        return res.render('product-edit')
+    },
+    
+    updateProduct: function(req, res) {
+    },
 }
 
 module.exports = productController;

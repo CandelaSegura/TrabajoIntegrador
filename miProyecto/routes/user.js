@@ -15,7 +15,7 @@ router.get('/register', userController.register);
 router.post('/register', registerValidation, userController.store);
 
 // Rutas para perfil
-router.get('/profile', userController.profile);
+router.get('/profile/id/:id', userController.profile);
 router.get('/profile/edit', userController.profileEdit);
 
 module.exports = router;

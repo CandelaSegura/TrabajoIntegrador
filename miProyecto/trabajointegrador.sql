@@ -41,6 +41,23 @@ FOREIGN KEY (id_producto) REFERENCES tabla_productos(id),
 FOREIGN KEY (id_usuario) REFERENCES tabla_usuario(id)
 );
 
+-- 5 USUARIOS -- 
+
+INSERT INTO tabla_usuario
+VALUES (DEFAULT, 'usuario 1', 'usuario1@usuario.com', 'contraseña1', '1990-01-01', 123456789, '/images/users/perfil1.jpg', DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO tabla_usuario
+VALUES (DEFAULT, 'usuario 2', 'usuario2@usuario.com', 'contraseña2', '1995-05-05', 987654321, '/images/users/perfil2.jpg', DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO tabla_usuario
+VALUES (DEFAULT, 'usuario 3', 'usuario3@usuario.com', 'contraseña3', '1988-12-10', 567890123, '/images/users/perfil3.jpg', DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO tabla_usuario
+VALUES (DEFAULT, 'usuario 4', 'usuario4@usuario.com', 'contraseña4', '2000-08-20', 654321789, '/images/users/perfil4.jpg', DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO tabla_usuario
+VALUES (DEFAULT, 'usuario 5', 'usuario5@usuario.com', 'contraseña5', '1993-03-15', 456789012, '/images/users/perfil5.jpg', DEFAULT, DEFAULT, DEFAULT);
+
 
 -- 10 PUBLICACIONES -- 
 
@@ -75,22 +92,6 @@ INSERT INTO tabla_productos
 VALUES (DEFAULT, '5', "/images/products/10.jpg", "ZAPATILLAS 515 v3", "El estilo informal se suma a la comodidad de nuestras zapatillas para mujer 515v3", DEFAULT, DEFAULT, DEFAULT);
 
 
--- 5 USUARIOS -- 
-
-INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario 1', 'usuario1@usuario.com', 'contraseña1', '1990-01-01', 123456789, '/images/public/users/perfil1.jpg', DEFAULT, DEFAULT, DEFAULT);
-
-INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario 2', 'usuario2@usuario.com', 'contraseña2', '1995-05-05', 987654321, '/images/public/users/perfil2.jpg', DEFAULT, DEFAULT, DEFAULT);
-
-INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario 3', 'usuario3@usuario.com', 'contraseña3', '1988-12-10', 567890123, '/images/public/users/perfil3.jpg', DEFAULT, DEFAULT, DEFAULT);
-
-INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario 4', 'usuario4@usuario.com', 'contraseña4', '2000-08-20', 654321789, '/images/public/users/perfil4.jpg', DEFAULT, DEFAULT, DEFAULT);
-
-INSERT INTO tabla_usuario
-VALUES (DEFAULT, 'usuario 5', 'usuario5@usuario.com', 'contraseña5', '1993-03-15', 456789012, '/images/public/users/perfil5.jpg', DEFAULT, DEFAULT, DEFAULT);
 
 
 -- 3 COMENTARIOS X PUBLICACION
