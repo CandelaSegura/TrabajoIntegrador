@@ -10,7 +10,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%=detalleProducto[0].nombre%></h2> 
+			<h2 class="products-title"><%=productos.nombre_producto%></h2> 
 			<p class="product-detail-description">
 				<a href="/product/add">Editar</a>
 			</p>
@@ -18,19 +18,20 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="<%=detalleProducto[0].imagen%>" alt="<%=detalleProducto[0].nombre%>" class="product-detail-img">
-					<p class="product-detail-description"><%=detalleProducto[0].descripcion%></p>
+					<img src="<%=productos.imagen_producto%>" alt="<%=productos.nombre_producto%>" class="product-detail-img">
+					<p class="product-detail-description">Publicado por: <a href="/user/profile/id/<%= productos.id_usuario%>"><%=productos.tabla_usuario.usuario%></a></p>
+					<p class="product-detail-description"><%=productos.descripcion_producto%></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<h2>Comentarios:</h2>
-						<%for (let i = 0; i < comentarios.length; i++) { %> 
+						<%for (let i = 0; i <productos.tabla_comentarios; i++) { %> 
 							<article>
-							<img src="<%=comentarios[i].fotoDePerfil%>" alt="">
+							<img src="<%=productos.tabla_comentarios.tabla_usuario.foto_usuario.fot_perfil%>" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/user/profile"><%=comentarios[i].usuario%></a> </strong>
-								<br><%=comentarios[i].texto%></p>
+								<strong> <a href="/user/profile"><%=productos.tabla_comentarios[i].tabla_usuario%></a> </strong>
+								<br><%=comentarios.texto_comentario%></p>
 							</div>
 						</article>
 						<% } %>

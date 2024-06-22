@@ -27,7 +27,7 @@
 
                 <div class="pregunta">
                     <label class="vacioForm" for="contraseña">Contraseña:</label>
-                    <input class="completarForm" type="password" id="contraseña" name="password" value="<%= locals.oldData && oldData.contrasena ? oldData.contrasena : null  %>"><br>
+                    <input class="completarForm" type="password" id="contraseña" name="contrasena" value="<%= locals.oldData && oldData.contrasena ? oldData.contrasena : null  %>"><br>
                     <% if (locals.errors && errors.contrasena) { %>
 						<div><%= errors.contrasena.msg %></div>
 					<% } %>

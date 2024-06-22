@@ -110,7 +110,16 @@ hr {
   color: var(--gray);
   cursor: pointer;
 }
+.centered-text {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.centered-text a {
+  margin-left: 5px;
+}
 
 /*====== Main Navbar ======*/
 .btn-toggle-navbar {

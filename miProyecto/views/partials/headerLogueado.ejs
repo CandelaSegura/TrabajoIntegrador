@@ -35,18 +35,14 @@
 			<ul class="right-navbar">
 				<li>
 					<a href="/user/profile">
-						<% if (locals.user) { %>
-							<h2 class="text-center mb-3">Hola <%= locals.user.name %></h2>
-						<% } %>
-					</a>
+						<p class="centered-text"></a>Hola<a href="/user/profile"></a><%= locals.user.usuario %></a></p>
 				</li>
 
 				<li>
-					<% if (locals.user) { %>
                         <form action="/user/logout" method="post">
                             <button type="submit" class="loguout">Cerrar sesión <i class="fas fa-sign-in-alt"></i></a></button>
-                        </form>
-                    <% } %>
+                        </form> 
+				
 				</li> 
 			</ul>
 		</nav>

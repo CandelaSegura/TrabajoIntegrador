@@ -2,6 +2,7 @@ const db = require('../database/models');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = db.User;
+const product = db.Product;
 
 const userController = {
 
@@ -98,12 +99,20 @@ logout: function (req, res) {
  
     
 profile: function(req, res) {
-        // Aquí deberías cargar los datos del usuario desde req.session.user
-        // Suponiendo que los datos del usuario están en req.session.user
-        const userData = req.session.user || {}; // Ajusta según tus necesidades
+    db.User.findByPk(req.params.id, {
+      include: [{association: "tabla_productos"}],
+      order: [[{model: product, as: 'tabla_productos'},'createdAt', 'DESC']]
+  })
 
-        return res.render('profile', { datos: { usuario: userData } });
-    },
+  .then(function(user) {
+      return res.render('profile', { user: user });
+  })
+
+  .catch(function(error) {
+      console.log(error);
+  }); 
+  
+},
 
     profileEdit: function(req, res) {
         return res.render('profile-edit', { datos: db });

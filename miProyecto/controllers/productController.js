@@ -1,21 +1,20 @@
 //const db = require('../db/index'); 
 const db = require('../database/models');
+const product = db.Product;
+const comment = db.Comment;
 
 const productController = {
 
     detalleProducto: function (req, res) {
-        let id = req.params.id;
-        let detalleProducto = [];
-        let comentariosProducto = [];
-        for (let i = 0; i < db.productos.length; i++) {
-            if (id == db.productos[i].id) {
-                detalleProducto.push(db.productos[i]);
-                comentariosProducto = db.productos[i].comentarios; 
-            }
-        }
-        return res.render('product', {
-            detalleProducto: detalleProducto,
-            comentarios: comentariosProducto 
+        product.findByPk(req.params.id,{
+            include: [{association:"tabla_usuario"}, {association:"tabla_comentarios", include:[{association:"tabla_usuario"}]}],
+            order: [[{model: comment, as: "tabla_comentarios"}, "created_at", "DESC"]]
+        })
+        .then(function(productos){
+            return res.render("product", {productos:productos})
+        })
+        .catch(function(error){
+            console.log(error);
         })
      },
 

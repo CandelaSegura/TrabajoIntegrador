@@ -21,9 +21,6 @@ const indexController = {
     }
 }
 
-//Falta ver del punto 7 
-// Clickear sobre cada producto debe redirigir al detalle del mismo.
-// En cada producto debe figurar el usuario que lo cargó. El dato a mostrar puede ser el email o el username dependiendo lo que cada equipo tenga en su tabla de la base de datos. Hacer click sobre el usuario debe redirigir a la página de perfil.
 
 
 module.exports = indexController
