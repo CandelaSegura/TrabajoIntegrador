@@ -4,41 +4,46 @@
 <%- include('./partials/head') %>
 
 <body>
-	<!-- Header -->
-	<%- include('./partials/headerDeslogueado') %>
-	<!-- /Header -->
+    <!-- Header -->
+    <%- include('./partials/headerDeslogueado') %>
+    <!-- /Header -->
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title"><%= mensaje %></h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-			<%for (let i = 0; i < resultado.length; i++) { %>
-				<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-						<a href="/product/id/<%= resultado[i].id %>">
-							<figure class="product-box_image">
-								<img src="<%=resultado[i].imagen%>" alt="<%= resultado[i].nombre %>">
-							</figure>
-							<article class="product-box_data">
-								<h2><%= resultado[i].nombre %></h2>
-								<p><%= resultado[i].descripcion %></p>
-								<p>Comentarios: <%=resultado[i].comentarios.length%></p>
-							</article>
-						</a>
-					</section>
-				</div>
-			<% } %>
+    <!-- Novedades -->
+    <div class="container products-wrapper">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="products-title"><%= mensaje %></h2>
+            </div>
+            <!-- Show the "ultimos" products -->
+            <% if (listado.length > 0) { %>
+                <% for (let i = 0; i < listado.length; i++) { %>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <section class="product-box">
+                            <a href="/product/id/<%= listado[i].id %>">
+                                <figure class="product-box_image">
+                                    <img src="<%= listado[i].imagen %>" alt="<%= listado[i].nombre %>">
+                                </figure>
+                                <article class="product-box_data">
+                                    <h2><%= listado[i].nombre %></h2>
+                                    <p><%= listado[i].descripcion %></p>
+                                    <p>Comentarios: <%= listado[i].comentarios.length %></p>
+                                </article>
+                            </a>
+                        </section>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <div class="col-12">
+                    <h2>No hay resultados para su búsqueda</h2>
+                </div>
+            <% } %>
 
-		</div>
-	</div>
+        </div>
+    </div>
 
-
-	<!-- footer -->
-	<%- include('./partials/footer') %>
-	<!-- /footer -->
+    <!-- footer -->
+    <%- include('./partials/footer') %>
+    <!-- /footer -->
 </body>
 
 </html>

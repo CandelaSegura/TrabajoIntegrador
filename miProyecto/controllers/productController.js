@@ -1,8 +1,10 @@
 //const db = require('../db/index'); 
 const { validationResult } = require('express-validator');
 const db = require('../database/models');
+const { where } = require('sequelize');
 const product = db.Product;
 const comment = db.Comment;
+const { Op } = require('sequelize');
 
 const productController = {
 
@@ -22,26 +24,38 @@ const productController = {
      },
 
     resultadosDeBusqueda: function(req, res){
-        let buscado = req.query.search
-        let resultado = []
+        let buscado = req.query.search;
 
-        for (let i = 0; i < db.productos.length; i++) {
-            if (buscado.toLowerCase() == db.productos[i].nombre.toLowerCase()) {
-                resultado.push(db.productos[i])
-            } 
-        }
-
-        if (resultado.length >= 1) {
-            return res.render("search-results", {
-                mensaje: `Resultados de busqueda: ${buscado}`,
-                resultado:resultado
+        product.findAll({
+            include:[
+                {association: 'usuario'},
+                {include: 'comentario'}
+            ],
+            where: {
+                [Op.or]: [
+                    {
+                        nombre_producto: {
+                            [Op.like]: `%${buscado}%`
+                        }
+                    },
+                    {
+                        descripcion: {
+                            [Op.like]: `%${buscado}%`
+                        }
+                    }
+                ]
+            },
+            order: [
+                ['created_at', 'DESC']
+            ]
+        })
+            .then(function(data){
+                console.log('data:', JSON.stringify(data[0], null, 4));
+                res.render('searchResults', {listado: data});
             })
-        } else {
-            return res.render("search-results", {
-                mensaje: `No se ha encontrado: ${buscado}`,
-                resultado:resultado
+            .catch(function(error){
+                console.log(error)
             })
-        }
     },
 
     add: function(req, res) {
