@@ -44,6 +44,37 @@ const productController = {
         }
     },
 
+    add: function(req, res) {
+        return res.render('product-add');
+    
+},
+
+storeAdd: function(req,res) {
+    const resultValidation = validationResult(req); 
+
+    if (!resultValidation.isEmpty()) { 
+        return res.render('product-add', { errors: resultValidation.mapped(), oldData: req.body })
+    } else {
+    const data = req.body;
+    //console.log(data);
+    const usuarioId = req.session.user.id;
+    const productAdd = {
+        id_usuario: usuarioId,
+        imagen_producto: data.imagen,
+        nombre_producto: data.producto,
+        descripcion_producto: data.descripcion,
+    };
+    product.create(productAdd)
+        .then ( function (data){
+            return res.redirect('/')
+        })
+        
+        .catch( function(error){
+            console.log(error)
+        }) }
+         
+    },
+
 
     update: function(req,res){
         return res.render('product-edit')
