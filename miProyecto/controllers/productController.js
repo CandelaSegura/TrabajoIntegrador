@@ -1,4 +1,5 @@
 //const db = require('../db/index'); 
+const { validationResult } = require('express-validator');
 const db = require('../database/models');
 const product = db.Product;
 const comment = db.Comment;
@@ -7,7 +8,9 @@ const productController = {
 
     detalleProducto: function (req, res) {
         product.findByPk(req.params.id,{
-            include: [{association:"tabla_usuario"}, {association:"tabla_comentarios", include:[{association:"tabla_usuario"}]}],
+            include: [
+                {association:"tabla_usuario"}, 
+                {association:"tabla_comentarios", include:[{association:"tabla_usuario"}]}],
             order: [[{model: comment, as: "tabla_comentarios"}, "created_at", "DESC"]]
         })
         .then(function(productos){
@@ -41,23 +44,6 @@ const productController = {
         }
     },
 
-    add: function(req,res) {
-        const data = req.body;
-        console.log(data);
-        const productAdd = {
-            imagen: data.imagen,
-            producto: data.producto,
-            descripcion: data.descripcion,
-            fechaCarga: data.fechaCarga
-        }
-        db.Product.create( product )
-            .then ( function (data){
-                res.redirect('/')
-            })
-            .catch( function(error){
-                console.log(error)
-            })
-    },
 
     update: function(req,res){
         return res.render('product-edit')
@@ -91,6 +77,32 @@ const productController = {
             });
         }
     },
+
+    deleteProduct:  function (req, res) {
+        let delprod = req.params.id;
+
+        product.findByPk(delprod).then((data) => {
+            if (req.session.user.id != data.id_usuario) {
+                return res.redirect('/');
+            }
+            product.destroy({
+                where: [{ id: delprod }],
+            })
+                .then(() => {
+                    return res.redirect("/");
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+        })
+            .catch((error) => {
+                console.log(error);
+            });
+
+
+    },
+
 }
 
 module.exports = productController;

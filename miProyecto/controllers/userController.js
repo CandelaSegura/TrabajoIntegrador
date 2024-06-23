@@ -38,13 +38,9 @@ store: function(req, res) {
         console.log('Usuario creado correctamente:', user);
         return res.redirect("/user/login");
     })
-    .catch(function(error) {
-        console.log("Error al crear usuario:", error);
-        return res.render("register", {
-            errors: { general: { msg: "Error al intentar registrar usuario" } },
-            oldData: req.body
-        });
-    });
+    .catch( function(error){
+      console.log(error)
+    }) ;
 },
 
 login: function(req, res) {

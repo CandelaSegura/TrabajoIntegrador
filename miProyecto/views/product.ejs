@@ -11,10 +11,13 @@
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%=productos.nombre_producto%></h2> 
-			<% if (locals.user == productos.tabla_usuario){ %>
+			<% if (locals.user && productos.tabla_usuario && locals.user.id == productos.tabla_usuario.id){ %>				
 				<p class="product-detail-description">
-					<a href="/product/edit/id/<%= productos.id %>">Editar</a>
+					<a href="/product/edit/id/<%= productos.id %>">Editar Producto</a>
 				</p>
+				<form action="/product/destroy/id/<%= productos.id %>" method="POST">
+					<button type="submit">Eliminar Producto</button>
+				</form>
 			<% } %>
 		</div>
 		<div class="product-detail">
@@ -29,7 +32,7 @@
 						<h2>Comentarios:</h2>
 						<%for (let i = 0; i <productos.tabla_comentarios; i++) { %> 
 							<article>
-							<img src="<%=productos.tabla_comentarios.tabla_usuario.foto_usuario.fot_perfil%>" alt="">
+							<img src="<%=productos.tabla_comentarios.tabla_usuario.foto_usuario.foto_perfil%>" alt="">
 							<div class="data">
 								<p class="user">
 								<strong> <a href="/user/profile"><%=productos.tabla_comentarios[i].tabla_usuario%></a> </strong>

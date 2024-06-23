@@ -6,10 +6,8 @@ const product = db.Product;
 const indexController = {
     index: function(req, res){
         product.findAll({
-            order: [
-                ['created_at','DESC']
-            ],
-            limit: 15
+            order: [['created_at','DESC']],
+            limit: 12
         })
         .then(function(productos){
             //console.log("productos:",productos)

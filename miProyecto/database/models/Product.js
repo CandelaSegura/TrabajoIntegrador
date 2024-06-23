@@ -23,7 +23,7 @@ module.exports = function (sequelize, dataTypes){
         descripcion_producto: {
             type: dataTypes.STRING(1000)
         },
-        created_at : {
+        created_at: {
             type: dataTypes.DATE,
             allowNull:true,
         },
