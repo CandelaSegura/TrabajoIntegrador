@@ -20,6 +20,10 @@
 				<div class="pregunta">
 				<label class="vacioForm" for="email">Modificar Email:</label>
 				<input class="completarForm" type="email" id="email" name="email"><br>
+				<input type="hidden" name="oldEmail" value="<%= oldData.email || '' %>">
+						<% if (errors && errors.email) { %>
+							<div class="error-msg text-danger"><%= errors.email.msg %></div>
+						<% } %>
 				</div>
 
 				<div class="pregunta">

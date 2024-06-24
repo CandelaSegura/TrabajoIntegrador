@@ -117,7 +117,25 @@ profile: function(req, res) {
 },
 
     profileEdit: function(req, res) {
-        return res.render('profile-edit', { datos: db });
+        let id = req.params.id;
+        User.findByPk(id)
+          .then(function(data){
+            if(req.session.user){
+              if(id == res.session.user.id){
+                console.log(req.session.user);
+                res.render('profile-edit', {listado: data});
+              } else{
+                console.log(res.session.user);
+                res.redirect('/')
+              } 
+              }
+            else { 
+              res.redirect('/')
+            }
+          })
+          .catch(function(error){
+            console.log(error)
+          })
     }
 };
 
