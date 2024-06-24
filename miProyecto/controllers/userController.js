@@ -58,6 +58,7 @@ login: function(req, res) {
 enterlogin: function (req, res) {
 
     let resultValidation = validationResult(req)
+    
     if (!resultValidation.isEmpty()) {
       console.log("resultValidation", resultValidation);
       return res.render('login', { errors: resultValidation.mapped(), oldData: req.body })
@@ -93,6 +94,7 @@ enterlogin: function (req, res) {
 logout: function (req, res) {
   //Destruir la sesión
   req.session.destroy();
+  res.clearCookie('userId');
  //redireccionar a home
   return res.redirect("/");
   },
