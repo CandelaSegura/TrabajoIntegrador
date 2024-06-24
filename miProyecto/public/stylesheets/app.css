@@ -117,6 +117,10 @@ hr {
   align-items: center;
 }
 
+.login {
+  font-size: 20px; 
+}
+
 .centered-text a {
   margin-left: 5px;
 }

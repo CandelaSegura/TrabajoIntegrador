@@ -4,7 +4,11 @@
 <%- include('./partials/head') %>
 <body>
 	<!-- Header -->
-	<%- include('./partials/headerDeslogueado') %>
+	<% if (locals.user != undefined) { %>
+		<%- include('./partials/headerLogueado')  %>
+	<% } else { %>
+		<%- include('./partials/headerDeslogueado')  %>
+	<% } %>
 	<!-- /Header -->
 
 	<!-- product detail -->
@@ -29,7 +33,7 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<h2>Comentarios:</h2>
+						<h2 class="login">Comentarios:</h2>
 						<%for (let i = 0; i <productos.tabla_comentarios; i++) { %> 
 							<article>
 							<img src="<%=productos.tabla_comentarios.tabla_usuario.foto_usuario.foto_perfil%>" alt="">
@@ -41,10 +45,22 @@
 						</article>
 						<% } %>
 					</section>
-					<form class="form" action="" method="POST">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-					</form>
+					<section>
+						<% if (locals.user) { %>
+							<form class="form" action="/product/id/<%= productos.id %>" method="post">
+								<input class="form-input" type="text" value="" name="comentario"  placeholder="Agregar comentario">
+								<% if (locals.errores&& errores.comentario) { %>
+									<div class="error-msg">
+										<%= errores.comentario.msg %>
+									</div>
+									<% } %>
+										<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+							</form>
+							<% } else{ %>
+								<h2>Iniciar sesión para comentar</h2>
+								<p class="login"><a href="/user/login">Iniciar sesión</a></p>	
+							<% } %>
+					</section>
 					<hr>
 				</div>
 			</div>

@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const productController = require('../controllers/productController');
-const productEditValidation = require('../middleware/productEdit - validator')
-const productAddValidation = require('../middleware/productAdd - validator')
+const productEditValidation = require('../middleware/productEdit - validator');
+const productAddValidation = require('../middleware/productAdd - validator');
+const commentValidation = require('../middleware/comment-validator');
 
 
 //product.ejs
@@ -20,6 +21,8 @@ router.get ('/edit/id/:id', productController.update);
 router.post ('/edit/id/:id', productEditValidation, productController.updateProduct);
 
 router.post('/destroy/id/:id', productController.deleteProduct);
+
+router.post('/id/:id', commentValidation, productController.addComment); 
 
 
 
