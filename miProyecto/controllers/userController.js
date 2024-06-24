@@ -127,7 +127,7 @@ profile: function(req, res) {
         User.findByPk(id)
           .then(function(data){
             if(req.session.user){
-              if(id == res.session.user.id){
+              if(id == req.session.user.id){
                 console.log(req.session.user);
                 res.render('profile-edit', {listado: data});
               } else{
