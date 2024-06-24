@@ -122,7 +122,6 @@ profile: function(req, res) {
   
 },
 
-<<<<<<< HEAD
     profileEdit: function(req, res) {
         let id = req.params.id;
         User.findByPk(id)
@@ -144,13 +143,6 @@ profile: function(req, res) {
             console.log(error)
           })
     }
-=======
-profileEdit: function(req, res) {
-  return res.render('profile-edit', { datos: db });
-},
-
-
->>>>>>> 2dde8d41b133820686c886aaa48d22e86f7d6bd4
 };
 
 
