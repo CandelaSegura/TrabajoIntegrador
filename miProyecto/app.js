@@ -6,6 +6,7 @@ var logger = require('morgan');
 //instalamos session
 const session = require ('express-session');
 
+
 var indexRouter = require('./routes/index');
 let productRouter = require('./routes/product');
 let userRouter = require('./routes/user');
@@ -46,10 +47,10 @@ app.use(function(req,res,next){
 
     db.User.findByPk(idDeLaCookie)
     .then( function(user){
-      console.log("middleware de la cookie trasladando info")
-      req.session.user = user //creamos la session 
-      console.log("en la cookie middleware")
-      res.locals.user = user; //para las vistas
+      //console.log("middleware de la cookie trasladando info")
+      if (user) {req.session.user = user //creamos la session 
+      //console.log("en la cookie middleware")
+      res.locals.user = user; } //para las vistas
       return next()
     })   
     .catch(function(err){

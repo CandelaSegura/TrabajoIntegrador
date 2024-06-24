@@ -10,7 +10,7 @@ router.get ('/id/:id', productController.detalleProducto);
 
 //productadd.ejs
 router.get ('/add', productController.add);
-router.post('/add', productController.storeAdd);
+router.post('/add', productAddValidation, productController.storeAdd);
 
 //search.ejs
 router.get ('/search', productController.resultadosDeBusqueda);

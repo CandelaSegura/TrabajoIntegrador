@@ -1,5 +1,7 @@
 const { body } = require('express-validator');
 const db = require('../database/models');
+const bcryptjs = require("bcryptjs")
+
 
 
 const loginValidation = [
@@ -12,6 +14,19 @@ const loginValidation = [
     body ("contrasena")
         .notEmpty()
         .withMessage("Completar este campo con una contraseña")
+        .custom(function(value, { req }) {     
+            return db.User.findOne({
+                where:{email:req.body.email}
+            })
+            .then(function(usuario){
+                if(usuario){
+                    const contraCorrecta = bcryptjs.compareSync(value, usuario.contrasena)
+                    if(!contraCorrecta){
+                        throw new Error("Contrasena Incorrecta")
+                    }
+                }
+            })
+        }),
 ]
 
 module.exports = loginValidation;

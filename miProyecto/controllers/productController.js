@@ -28,8 +28,8 @@ const productController = {
 
         product.findAll({
             include:[
-                {association: 'usuario'},
-                {include: 'comentario'}
+                {association: 'tabla_usuario'},
+                {association: 'tabla_comentarios'}
             ],
             where: {
                 [Op.or]: [
@@ -39,7 +39,7 @@ const productController = {
                         }
                     },
                     {
-                        descripcion: {
+                        descripcion_producto: {
                             [Op.like]: `%${buscado}%`
                         }
                     }
@@ -49,9 +49,14 @@ const productController = {
                 ['created_at', 'DESC']
             ]
         })
-            .then(function(data){
-                console.log('data:', JSON.stringify(data[0], null, 4));
-                res.render('searchResults', {listado: data});
+            .then(function(productos){
+                if (productos.length >= 1){
+                    return res.render('search-results', 
+                    {productos:productos, existe:`Resultado de Busqueda: ${req.query.search}`})
+                } else {
+                    return res.render ('search-results', 
+                    {productos:productos, existe:`No hay Resultado de Busqueda: ${req.query.search}`})
+                }
             })
             .catch(function(error){
                 console.log(error)
@@ -91,7 +96,8 @@ storeAdd: function(req,res) {
 
 
     update: function(req,res){
-        return res.render('product-edit')
+        const id = req.params.id;
+        return res.render('product-edit',{id:id})
     },
     
     updateProduct: function(req, res) {

@@ -38,9 +38,13 @@ store: function(req, res) {
         console.log('Usuario creado correctamente:', user);
         return res.redirect("/user/login");
     })
-    .catch( function(error){
-      console.log(error)
-    }) ;
+    .catch(function(error) {
+        console.log("Error al crear usuario:", error);
+        return res.render("register", {
+            errors: { general: { msg: "Error al intentar registrar usuario" } },
+            oldData: req.body
+        });
+    });
 },
 
 login: function(req, res) {
@@ -74,7 +78,7 @@ enterlogin: function (req, res) {
           // si tildo recordarme --> creamos la cookie
           if (req.body.recordarme != undefined) {
             // console.log("aca",usuario);
-            res.cookie("userId", user.id, { maxAge: 1000 * 60 * 5 })
+            res.cookie("userId", usuario.id, { maxAge: 1000 * 60 * 5 })
           }
           return res.redirect('/')
         })

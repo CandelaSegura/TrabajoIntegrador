@@ -4,39 +4,49 @@
 <%- include('./partials/head') %>
 
 <body>
-	<!-- Header AGREGAR HEADER DESPUES -- HAY UN ERROR PERO HAY QUE SOLUCIOANRLO-->
+	<!-- Header-->
+    <!-- Header -->
+	<%- include('./partials/headerLogueado') %>
+	<!-- /Header -->
 	<!-- /Header -->
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Agregar productos</h2>
+				<h2 class="products-title">Editar producto</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form class="formsConsigna" action="/products/agregarProducto" method="post">
+			<form class="formsConsigna" action="/product/edit/id/<%=id%>" method="post">
 				
 				<div class="pregunta">
 				<label class="vacioForm" for="imagen">Imagen:</label>
-				<input class="completarForm" type="text" id="imagen" name="imagen"><br>
+				<input class="completarForm" type="text" id="imagen" name="imagen">
+                <% if (locals.errors && errors.imagen) { %>
+					<div class = "error-msg" > <%= errors.imagen.msg %> </div>
+				<% } %>
+                <br>
 				</div>
 
 				<div class="pregunta">
 				<label class="vacioForm" for="producto">Nombre del producto:</label>
-				<input class="completarForm" type="text" id="producto" name="producto"><br>
+				<input class="completarForm" type="text" id="producto" name="producto">
+                <% if (locals.errors && errors.producto) { %>
+					<div class = "error-msg" > <%= errors.producto.msg %> </div>
+				<% } %>
+                <br>
 				</div>
 
 				<div class="pregunta">
 				<label class="vacioForm" for="descripcion">Descripcion:</label>
-				<input class="completarForm" type="text" id="descripcion" name="descripcion"><br>
-				</div>
+				<input class="completarForm" type="text" id="descripcion" name="descripcion">
+                <% if (locals.errors && errors.descripcion) { %>
+					<div class = "error-msg" > <%= errors.descripcion.msg %> </div> 
+				<% } %>
+                <br>
+				</div><br>
 
-				<div class="pregunta">
-				<label class="vacioForm" for="fechaCarga">Fecha de carga:</label>
-				<input class="completarForm" type="date" id="fechaCarga" name="fechaCarga"><br>
-				</div>
-
-				<button class="boton" type="submit"> <a href='/'>Guardar Producto</a></button>
+				<button class="boton" type="submit"> <a href='/'>Editar Producto</a></button>
 			  </form>
 		</div>
 	</div>
