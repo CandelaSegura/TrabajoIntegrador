@@ -71,17 +71,23 @@ enterlogin: function (req, res) {
         }]
       })
         .then(function (usuario) {
+          if (usuario) {
           // console.log('PASSWORD : ', usuario.contrasenia);
           let validPassword = bcrypt.compareSync(req.body.contrasena, usuario.contrasena)
           console.log('validPassword? :', validPassword);
-          req.session.user = usuario
 
+          if (validPassword) {
+          req.session.user = usuario
           // si tildo recordarme --> creamos la cookie
           if (req.body.recordarme != undefined) {
             // console.log("aca",usuario);
             res.cookie("userId", usuario.id, { maxAge: 1000 * 60 * 5 })
           }
           return res.redirect('/')
+          } else {
+            return res.render('login', { errors: resultValidation.mapped(), oldData: req.body })
+          }
+          } 
         })
         .catch(function (error) {
           console.log(error);
@@ -116,6 +122,7 @@ profile: function(req, res) {
   
 },
 
+<<<<<<< HEAD
     profileEdit: function(req, res) {
         let id = req.params.id;
         User.findByPk(id)
@@ -137,7 +144,17 @@ profile: function(req, res) {
             console.log(error)
           })
     }
+=======
+profileEdit: function(req, res) {
+  return res.render('profile-edit', { datos: db });
+},
+
+
+>>>>>>> 2dde8d41b133820686c886aaa48d22e86f7d6bd4
 };
+
+
+
 
 module.exports = userController;
 

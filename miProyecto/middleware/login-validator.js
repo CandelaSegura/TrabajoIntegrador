@@ -1,8 +1,6 @@
 const { body } = require('express-validator');
 const db = require('../database/models');
-const bcryptjs = require("bcryptjs")
-
-
+const bcryptjs = require("bcryptjs");
 
 const loginValidation = [
     body("email")
@@ -10,7 +8,7 @@ const loginValidation = [
         .withMessage("Obligatorio completar email")
         .isEmail()
         .withMessage("Escribir un formato de correo valido"),
-        //buscar en la base de datos y fijarse si existe
+        
     body ("contrasena")
         .notEmpty()
         .withMessage("Completar este campo con una contraseña")

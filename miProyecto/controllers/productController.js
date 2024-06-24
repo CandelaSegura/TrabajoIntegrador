@@ -68,31 +68,31 @@ const productController = {
     
 },
 
-storeAdd: function(req,res) {
-    const resultValidation = validationResult(req); 
+    storeAdd: function(req,res) {
+        const resultValidation = validationResult(req); 
 
-    if (!resultValidation.isEmpty()) { 
-        return res.render('product-add', { errors: resultValidation.mapped(), oldData: req.body })
-    } else {
-    const data = req.body;
-    //console.log(data);
-    const usuarioId = req.session.user.id;
-    const productAdd = {
-        id_usuario: usuarioId,
-        imagen_producto: data.imagen,
-        nombre_producto: data.producto,
-        descripcion_producto: data.descripcion,
-    };
-    product.create(productAdd)
-        .then ( function (data){
-            return res.redirect('/')
-        })
-        
-        .catch( function(error){
-            console.log(error)
-        }) }
-         
-    },
+        if (!resultValidation.isEmpty()) { 
+            return res.render('product-add', { errors: resultValidation.mapped(), oldData: req.body })
+        } else {
+        const data = req.body;
+        //console.log(data);
+        const usuarioId = req.session.user.id;
+        const productAdd = {
+            id_usuario: usuarioId,
+            imagen_producto: data.imagen,
+            nombre_producto: data.producto,
+            descripcion_producto: data.descripcion,
+        };
+        product.create(productAdd)
+            .then ( function (data){
+                return res.redirect('/')
+            })
+            
+            .catch( function(error){
+                console.log(error)
+            }) }
+             
+        },
 
 
     update: function(req,res){
@@ -101,20 +101,17 @@ storeAdd: function(req,res) {
     },
     
     updateProduct: function(req, res) {
-        const errors = validationResult(req);
+        const resultValidation = validationResult(req); 
 
-        if (!errors.isEmpty()) {
-            console.log("errors:", JSON.stringify(errors, null, 4));
-            return res.render("product-edit", { 
-                errors: errors.mapped(),
-                oldData: req.body
-            });
+        if (!resultValidation.isEmpty()) { 
+            //console.log("errors:", JSON.stringify(errors, null, 4));
+            return res.render('product-edit', { errors: resultValidation.mapped(), oldData: req.body })
         } else {
-    
-            db.Product.update({
-                imagen_producto: req.body.imagen,
-                nombre_producto: req.body.producto,
-                descripcion_producto: req.body.descripcion,
+            const data = req.body;
+            product.update({
+                imagen_producto: data.imagen,
+                nombre_producto: data.producto,
+                descripcion_producto: data.descripcion,
             },
                 { where: { id: req.params.id }
             })
@@ -150,8 +147,26 @@ storeAdd: function(req,res) {
             .catch((error) => {
                 console.log(error);
             });
+    },
 
+    addComment: function (req, res) {
+        let errores = validationResult(req);
+        if (req.session.user != undefined) {
+            if (errores.isEmpty()) {
+                let id = req.params.id
 
+                db.Comment.create({
+                    texto_comentario : req.body.comentario,
+                    id_usuario : req.session.user.id,
+                    id_producto : req.params.id,
+                })
+                .then(function(data){
+                    res.redirect(`/product/id/${id}`)
+                })
+                .catch(function(error){
+                    console.log(error)
+                })
+            }} 
     },
 
 }
