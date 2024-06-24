@@ -122,26 +122,53 @@ profile: function(req, res) {
   
 },
 
-    profileEdit: function(req, res) {
-        let id = req.params.id;
-        User.findByPk(id)
-          .then(function(data){
-            if(req.session.user){
-              if(id == res.session.user.id){
-                console.log(req.session.user);
-                res.render('profile-edit', {listado: data});
-              } else{
-                console.log(res.session.user);
-                res.redirect('/')
-              } 
-              }
-            else { 
-              res.redirect('/')
-            }
-          })
-          .catch(function(error){
-            console.log(error)
-          })
+    profileEdit: function (req, res) {
+      const editProductValidations = validationResult(req);
+      if (editProductValidations.errors.length > 0) {
+        return res.render("profile-edit", {
+          errors: editProductValidations.mapped(),
+          oldData: req.body,
+          usuario: req.session.user
+        });
+      }
+      const id = req.session.user.id;
+      const profile = req.body;
+      if (profile.fecha_nacimiento == "") {
+        profile.fecha_nacimiento = null;
+      }
+      if (profile.dni == "") {
+        profile.dni = null;
+      }
+      if (profile.foto_perfil == "") {
+        profile.foto_perfil = null;
+      }
+      
+      profileEdit = {
+        email: profile.email,
+        clave: profile.pass,
+        fecha: profile.fecha_nacimiento,
+        dni: profile.dni,
+        foto_de_perfil: profile.foto_perfil,
+        user: profile.user,
+      };
+  
+      if (profileEdit.clave == ""){
+        profileEdit.clave = req.session.user.clave
+      }
+      else{
+        profileEdit.clave = bcrypt.hashSync(profileEdit.clave, 12)
+      }
+      dbPosta.User.update(profileEdit, {
+        where: {
+          id: id,
+        },
+      })
+        .then(function (result) {
+          return res.redirect(`/user/profile/${id}`);
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
     }
 };
 
