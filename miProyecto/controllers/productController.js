@@ -166,7 +166,30 @@ const productController = {
                 .catch(function(error){
                     console.log(error)
                 })
-            }} 
+                
+            }} else {
+                let id = req.params.id
+                    db.Product.findByPk(id,
+                        {include: [{association: "tabla_comentarios", include: [{association: "tabla_usuario"}]}],
+                    })
+                
+                .then(function(producto){
+                    db.Comment.findAll({
+                        where: {id_producto: id},
+                        order: [['Created_at', 'DESC']],
+                        include: [{ association: 'tabla_usuario' }]
+                    })
+                    .then(function (comentario) {
+                        return res.render("product", {comentario: comentario, producto:producto, errors: errors.mapped(), oldData: req.body });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                })
+                .catch(function(error){
+                    console.log(error)
+                })
+        }
     },
 
 }

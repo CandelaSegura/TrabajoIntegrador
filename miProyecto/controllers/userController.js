@@ -143,20 +143,27 @@ profileEdit: function (req, res) {
 
 update: function (req, res) {
   const id = req.params.id;
-
+  db.User.findByPk(id)
+  .then(function(usuario){
+    return usuario
+  })
+  .catch(function (error) {
+    console.log(error);
+    return res.redirect('/');
+  })
   
   let updatedUser = {
+    usuario: req.body.usuario,
     email: req.body.email,
-    fecha: req.body.fecha,
-    dni: req.body.nroDocumento,
-    foto_perfil: req.body.foto
+    fecha: req.body.fecha_nacimiento,
+    dni: req.body.nro_documento,
+    foto_perfil: req.body.foto_perfil,
   };
-
-  
-  if (req.body.contrasenia) {
-    updatedUser.contrasena = bcrypt.hashSync(req.body.contrasenia, 10);
+  if (req.body.contrasena) {
+    updatedUser.contrasena = bcrypt.hashSync(req.body.contrasena, 10);
+  } else {
+    updatedUser.contrasena = usuario.contrasena
   }
-
   let errors = validationResult(req);
 
   if (!errors.isEmpty()) {

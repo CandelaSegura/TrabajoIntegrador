@@ -19,43 +19,39 @@
 				<h2 class="products-title">Editar mi perfil</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form class="formulario" action="/user/profile" method="post">
+			<form class="formulario" action="/user/profile/edit/id/<%= listado.id %>" method="post">
 				
 				<div class="pregunta">
 				<label class="vacioForm" for="email">Modificar Email:</label>
-				<input class="completarForm" type="email" id="email" name="email"><br>
-				<input type="hidden" name="oldEmail" value="<%= oldData.email || '' %>">
-						<% if (errors && errors.email) { %>
-							<div class="error-msg text-danger"><%= errors.email.msg %></div>
-						<% } %>
+				<input class="completarForm" type="email" id="email" name="email" placeholder="Original: <%=user.email%>"><br>
 				</div>
 
 				<div class="pregunta">
 				<label class="vacioForm" for="usuario">Modificar Usuario:</label>
-				<input class="completarForm" type="text" id="usuario" name="usuario"><br>
+				<input class="completarForm" type="text" id="usuario" name="usuario" placeholder="Original: <%=user.usuario%>"><br>
 				</div>
 
 				<div class="pregunta">
 				<label class="vacioForm" for="contraseña">Modificar Contraseña:</label>
-				<input class="completarForm" type="password" id="contraseña" name="contraseña"><br>
+				<input class="completarForm" type="password" id="contrasena" name="contrasena"><br>
 				</div>
 
 				<div class="pregunta">
 				<label class="vacioForm" for="fecha_nacimiento">Modificar Fecha de Nacimiento:</label>
-				<input class="completarForm" type="date" id="fecha_nacimiento" name="fecha_nacimiento"><br>
+				<input class="completarForm" type="date" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Original: <%=user.fecha%>"><br>
 				</div>
 
 				<div class="pregunta">
 				<label class="vacioForm" for="nro_documento">Modificar Nro de Documento:</label>
-				<input class="completarForm" type="number" id="nro_documento" name="nro_documento"><br>
+				<input class="completarForm" type="number" id="nro_documento" name="nro_documento" placeholder="Original: <%=user.dni%>"><br>
 				</div>
 
 				<div class="pregunta">
 				<label class="vacioForm" for="foto_perfil">Modificar Foto de Perfil:</label>
-				<input class="completarForm" type="text" id="foto_perfil" name="foto_perfil"><br>
+				<input class="completarForm" type="text" id="foto_perfil" name="foto_perfil" placeholder="Original: <%=user.foto_perfil%>"><br>
 				</div>
 
-				<button class="boton" type="submit"><a href='/user/profile'>Guardar cambios</a></button>
+				<button class="boton" type="submit">Guardar cambios</button>
 			</form>
 		</div>
 	</div>

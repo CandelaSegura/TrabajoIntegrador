@@ -34,13 +34,13 @@
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<h2 class="login">Comentarios:</h2>
-						<%for (let i = 0; i <productos.tabla_comentarios; i++) { %> 
+						<%for (let i = 0; i <productos.tabla_comentarios.length; i++) { %> 
 							<article>
-							<img src="<%=productos.tabla_comentarios.tabla_usuario.foto_usuario.foto_perfil%>" alt="">
+							<img src="<%=productos.tabla_comentarios[i].tabla_usuario.foto_perfil%>" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/user/profile"><%=productos.tabla_comentarios[i].tabla_usuario%></a> </strong>
-								<br><%=comentarios.texto_comentario%></p>
+								<strong> <a href="/user/profile/id/<%= productos.tabla_comentarios[i].id_usuario%>"><%=productos.tabla_comentarios[i].tabla_usuario.usuario%></a></strong>
+								<br><%=productos.tabla_comentarios[i].texto_comentario%></p>
 							</div>
 						</article>
 						<% } %>
