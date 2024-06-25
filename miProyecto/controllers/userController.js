@@ -122,54 +122,65 @@ profile: function(req, res) {
   
 },
 
-    profileEdit: function (req, res) {
-      const editProductValidations = validationResult(req);
-      if (editProductValidations.errors.length > 0) {
-        return res.render("profile-edit", {
-          errors: editProductValidations.mapped(),
-          oldData: req.body,
-          usuario: req.session.user
-        });
+profileEdit: function (req, res) {
+  let id = req.params.id;
+
+  User.findByPk(id)
+    .then(function (user) {
+      if (req.session.user && id == req.session.user.id) {
+       
+        return res.render('profile-edit', { listado: user });
+      } else {
+        
+        return res.redirect('/');
       }
-      const id = req.session.user.id;
-      const profile = req.body;
-      if (profile.fecha_nacimiento == "") {
-        profile.fecha_nacimiento = null;
-      }
-      if (profile.dni == "") {
-        profile.dni = null;
-      }
-      if (profile.foto_perfil == "") {
-        profile.foto_perfil = null;
-      }
-      
-      profileEdit = {
-        email: profile.email,
-        clave: profile.pass,
-        fecha: profile.fecha_nacimiento,
-        dni: profile.dni,
-        foto_de_perfil: profile.foto_perfil,
-        user: profile.user,
-      };
+    })
+    .catch(function (error) {
+      console.log(error);
+      return res.redirect('/');
+    });
+},
+
+update: function (req, res) {
+  const id = req.params.id;
+
   
-      if (profileEdit.clave == ""){
-        profileEdit.clave = req.session.user.clave
-      }
-      else{
-        profileEdit.clave = bcrypt.hashSync(profileEdit.clave, 12)
-      }
-      dbPosta.User.update(profileEdit, {
-        where: {
-          id: id,
-        },
+  let updatedUser = {
+    email: req.body.email,
+    fecha: req.body.fecha,
+    dni: req.body.nroDocumento,
+    foto_perfil: req.body.foto
+  };
+
+  
+  if (req.body.contrasenia) {
+    updatedUser.contrasena = bcrypt.hashSync(req.body.contrasenia, 10);
+  }
+
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    
+    console.log("Errores de validación:", JSON.stringify(errors.array(), null, 4));
+    return res.render('profile-edit', { errors: errors.mapped(), old: req.body });
+  } else {
+    
+    User.update(updatedUser, {
+      where: { id: id }
+    })
+      .then(function () {
+        
+        req.session.user = Object.assign(req.session.user, updatedUser);
+        console.log('Actualizado:', req.session.user);
+        return res.redirect('/');
       })
-        .then(function (result) {
-          return res.redirect(`/user/profile/${id}`);
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
-    }
+      .catch(function (error) {
+        console.log("Error:", error);
+        return res.redirect('/');
+      });
+  }
+}
+
 };
 
 
