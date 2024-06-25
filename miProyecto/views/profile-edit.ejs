@@ -19,21 +19,32 @@
 				<h2 class="products-title">Editar mi perfil</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form class="formulario" action="/user/profile/edit/id/<%= listado.id %>" method="post">
+			<form class="formulario" action="/user/profile/edit/id/<%= usuario.id %>" method="post">
 				
 				<div class="pregunta">
 				<label class="vacioForm" for="email">Modificar Email:</label>
 				<input class="completarForm" type="email" id="email" name="email" placeholder="Original: <%=user.email%>"><br>
+				<% if (locals.errors && errors.email) { %>
+					<div class="error-msg"><%= errors.email.msg %></div>
+					<% } %>
 				</div>
+
+
 
 				<div class="pregunta">
 				<label class="vacioForm" for="usuario">Modificar Usuario:</label>
 				<input class="completarForm" type="text" id="usuario" name="usuario" placeholder="Original: <%=user.usuario%>"><br>
+				<% if (locals.errors && errors.usuario) { %>
+					<div class="error-msg"><%= errors.usuario.msg %></div>
+					<% } %>
 				</div>
 
 				<div class="pregunta">
 				<label class="vacioForm" for="contraseña">Modificar Contraseña:</label>
 				<input class="completarForm" type="password" id="contrasena" name="contrasena"><br>
+				<% if (locals.errors && errors.contrasena) { %>
+					<div class="error-msg"><%= errors.contrasena.msg %></div>
+					<% } %>
 				</div>
 
 				<div class="pregunta">

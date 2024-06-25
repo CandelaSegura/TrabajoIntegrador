@@ -102,10 +102,20 @@ const productController = {
     
     updateProduct: function(req, res) {
         const resultValidation = validationResult(req); 
+        const id = req.params.id;
 
         if (!resultValidation.isEmpty()) { 
             //console.log("errors:", JSON.stringify(errors, null, 4));
-            return res.render('product-edit', { errors: resultValidation.mapped(), oldData: req.body })
+            product.findByPk(req.params.id, {
+                include: [{association: "tabla_usuario"}],
+            })
+            .then(function(id){
+                return res.render('product-edit', {errors: resultValidation.mapped(), oldData: req.body, id:id})
+                })
+            .catch(function(error){
+                console.log(error);
+            });
+            
         } else {
             const data = req.body;
             product.update({
@@ -180,7 +190,7 @@ const productController = {
                         include: [{ association: 'tabla_usuario' }]
                     })
                     .then(function (comentario) {
-                        return res.render("product", {comentario: comentario, producto:producto, errors: errors.mapped(), oldData: req.body });
+                        return res.render("product", {comentario: comentario, producto:producto, errors: errors.mapped(), oldData: req.body, producto:producto });
                     })
                     .catch(function (error) {
                         console.log(error);

@@ -129,7 +129,7 @@ profileEdit: function (req, res) {
     .then(function (user) {
       if (req.session.user && id == req.session.user.id) {
        
-        return res.render('profile-edit', { listado: user });
+        return res.render('profile-edit', { usuario: user });
       } else {
         
         return res.redirect('/');
@@ -145,47 +145,48 @@ update: function (req, res) {
   const id = req.params.id;
   db.User.findByPk(id)
   .then(function(usuario){
-    return usuario
+    let updatedUser = {
+      usuario: req.body.usuario,
+      email: req.body.email,
+      fecha: req.body.fecha_nacimiento,
+      dni: req.body.nro_documento,
+      foto_perfil: req.body.foto_perfil,
+    };
+    if (req.body.contrasena) {
+      updatedUser.contrasena = bcrypt.hashSync(req.body.contrasena, 10);
+    } else {
+      updatedUser.contrasena = usuario.contrasena
+    }
+    let errors = validationResult(req);
+  
+    if (!errors.isEmpty()) {
+      
+      console.log("Errores de validación:", JSON.stringify(errors.array(), null, 4));
+      return res.render('profile-edit', { errors: errors.mapped(), old: req.body, usuario:usuario });
+    
+    } else {
+      
+      User.update(updatedUser, {
+        where: { id: id }
+      })
+        .then(function () {
+          
+          req.session.user = Object.assign(req.session.user, updatedUser);
+          console.log('Actualizado:', req.session.user);
+          return res.redirect('/');
+        })
+        .catch(function (error) {
+          console.log("Error:", error);
+          return res.redirect('/');
+        });
+    }
+    
   })
   .catch(function (error) {
     console.log(error);
     return res.redirect('/');
   })
   
-  let updatedUser = {
-    usuario: req.body.usuario,
-    email: req.body.email,
-    fecha: req.body.fecha_nacimiento,
-    dni: req.body.nro_documento,
-    foto_perfil: req.body.foto_perfil,
-  };
-  if (req.body.contrasena) {
-    updatedUser.contrasena = bcrypt.hashSync(req.body.contrasena, 10);
-  } else {
-    updatedUser.contrasena = usuario.contrasena
-  }
-  let errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    
-    console.log("Errores de validación:", JSON.stringify(errors.array(), null, 4));
-    return res.render('profile-edit', { errors: errors.mapped(), old: req.body });
-  } else {
-    
-    User.update(updatedUser, {
-      where: { id: id }
-    })
-      .then(function () {
-        
-        req.session.user = Object.assign(req.session.user, updatedUser);
-        console.log('Actualizado:', req.session.user);
-        return res.redirect('/');
-      })
-      .catch(function (error) {
-        console.log("Error:", error);
-        return res.redirect('/');
-      });
-  }
 }
 
 };

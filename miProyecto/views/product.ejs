@@ -49,11 +49,9 @@
 						<% if (locals.user) { %>
 							<form class="form" action="/product/id/<%= productos.id %>" method="post">
 								<input class="form-input" type="text" value="" name="comentario"  placeholder="Agregar comentario">
-								<% if (locals.errores&& errores.comentario) { %>
-									<div class="error-msg">
-										<%= errores.comentario.msg %>
-									</div>
-									<% } %>
+								<% if (locals.errors && errors.comentario) { %>
+									<div class = "error-msg" > <%= errors.comentario.msg %> </div>
+								<% } %>
 										<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 							</form>
 							<% } else{ %>
